@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "agenda.db";
-    private static final String TABLE_CONTATOS = "t_contactos";
+    private static final String TABLE_CONTACTOS = "t_contactos";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CONTATOS + "(" +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CONTACTOS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL,"+
                 "telefono TEXT NOT NULL,"+
@@ -28,7 +28,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CONTATOS);
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_CONTACTOS);
         onCreate(sqLiteDatabase);
     }
 }
