@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.yourcircadian.db.DbContactos;
 
@@ -28,8 +29,20 @@ public class NuevoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DbContactos dbContactos = new DbContactos(NuevoActivity.this);
-                dbContactos.insertarContacto(txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreoElectronico.getText().toString());
+                long id = dbContactos.insertarContacto(txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreoElectronico.getText().toString());
+                if(id > 0){
+                    Toast.makeText(NuevoActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
+                    limpiar();
+                }else{
+                    Toast.makeText(NuevoActivity.this, "ERROR AL GUARDAR REGISTRO", Toast.LENGTH_LONG).show();
+                }
             }
         });
+    }
+
+    private void limpiar(){
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtCorreoElectronico.setText("");
     }
 }
