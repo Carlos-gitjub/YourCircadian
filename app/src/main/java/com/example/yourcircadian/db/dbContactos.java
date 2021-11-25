@@ -14,19 +14,30 @@ public class dbContactos extends DbHelper{
         super(context);
         this.context = context;
     }
+
     public long insertarContacto(String nombre, String telefono, String correo_electronico) {
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        long id = 0;
+
+        try {
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         /*ContentValues is a class used to insert new rows into tables. Each Content Values
         object represents a single table row as a map of column names to values.*/
 
-        ContentValues values = new ContentValues();
-        values.put("nombre", nombre);
-        values.put("telefono", telefono);
-        values.put("correo_electronico", correo_electronico);
+            ContentValues values = new ContentValues();
+            values.put("nombre", nombre);
+            values.put("telefono", telefono);
+            values.put("correo_electronico", correo_electronico);
 
-        long id = db.insert(TABLE_CONTACTOS, null, values);
+            long id = db.insert(TABLE_CONTACTOS, null, values);
+
+            return id;
+        }catch(Exception ex){
+            ex.toString();
+        }
 
         return id;
     }
