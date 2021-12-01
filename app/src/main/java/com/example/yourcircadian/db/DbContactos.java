@@ -1,3 +1,4 @@
+/* ------------------------------------------------------------------*/
 package com.example.yourcircadian.db;
 
 import android.content.ContentValues;
@@ -32,7 +33,7 @@ public class DbContactos extends DbHelper{
             values.put("telefono", telefono);
             values.put("correo_electronico", correo_electronico);
 
-            long id = db.insert(TABLE_CONTACTOS, null, values);
+            id = db.insert(TABLE_CONTACTOS, null, values);
 
             return id;
         }catch(Exception ex){
