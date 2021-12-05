@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textView1 = (TextView) findViewById(R.id.textView1);
+        textView1 = (TextView) findViewById(R.id.textView1);
 
         Prueba prueba = new Prueba();
         prueba.cambiarTexto(textView1);
