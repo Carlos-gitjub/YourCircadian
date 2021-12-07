@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+
         myPhoneChargerConnectedListener = new PhoneChargerConnectedListener();
         registerReceiver(myPhoneChargerConnectedListener, intentFilter);
     }
