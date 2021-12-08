@@ -17,14 +17,8 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         textView1 = (TextView) ((AppCompatActivity)context).findViewById(R.id.textView1);
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             textView1.setText("Conectado");
-            //Toast.makeText(context,"CONECTADO", Toast.LENGTH_LONG).show();
-            //context.startService(
-            //        new Intent(MyService.ACTION_POWER_CONNECTED));
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
             textView1.setText("Desconectado");
-            //Toast.makeText(context,"DESCONECTADO", Toast.LENGTH_LONG).show();
-            //context.startService(
-            //        new Intent(MyService.ACTION_POWER_DISCONNECTED));
         }
     }
 }

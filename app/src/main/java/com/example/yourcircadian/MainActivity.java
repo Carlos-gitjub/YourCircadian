@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
         myPhoneChargerConnectedListener = new PhoneChargerConnectedListener();
         registerReceiver(myPhoneChargerConnectedListener, intentFilter);
     }
+    //onPause() lleva a cabo la acción cuando la app deja de estar en pantalla y pasa a segundo plano
+    //si quitas onPause(), la app sigue realizando lo que pone en onResume()m aunque esta esté
+    //en segundo plano. Siempre y cuando la app esté inicializada.
+
     @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(myPhoneChargerConnectedListener);
     }
+
 }
