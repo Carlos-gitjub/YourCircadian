@@ -2,6 +2,8 @@ package com.example.yourcircadian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
+
 
     /*
 
@@ -26,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(myPhoneChargerConnectedListener, intentFilter);
     }
     //onPause() lleva a cabo la acción cuando la app deja de estar en pantalla y pasa a segundo plano
-    //si quitas onPause(), la app sigue realizando lo que pone en onResume()m aunque esta esté
-    //en segundo plano. Siempre y cuando la app esté inicializada.
+    //si quitas onPause(), la app sigue realizando lo que pone en onResume() aunque esta esté
+    //en segundo plano. Siempre y cuando la app haya sido inicializada.
 
     @Override
     protected void onPause() {
