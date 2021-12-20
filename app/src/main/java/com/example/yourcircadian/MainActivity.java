@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private PhoneChargerConnectedListener myPhoneChargerConnectedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,14 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private PhoneChargerConnectedListener myPhoneChargerConnectedListener;
     @Override
     protected void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-
         myPhoneChargerConnectedListener = new PhoneChargerConnectedListener();
         registerReceiver(myPhoneChargerConnectedListener, intentFilter);
     }
