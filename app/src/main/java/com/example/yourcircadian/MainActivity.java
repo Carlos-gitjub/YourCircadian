@@ -4,18 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.yourcircadian.db.DbHelper;
+
 public class MainActivity extends AppCompatActivity {
     private PhoneChargerConnectedListener myPhoneChargerConnectedListener;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        DbHelper dbHelper = new DbHelper(MainActivity.this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
     }
 
     @Override
@@ -37,4 +43,5 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(myPhoneChargerConnectedListener);
     }
 */
+
 }
