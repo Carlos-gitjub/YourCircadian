@@ -19,7 +19,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         TextView textView1;
         textView1 = (TextView) ((AppCompatActivity)context).findViewById(R.id.textView1);
 
-        DbRegistros dbRegistros = new DbRegistros(context.getApplicationContext());
+        DbRegistros dbRegistros = new DbRegistros(context); //por si aca: .getApplicationContext()
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             textView1.setText("Conectado");
