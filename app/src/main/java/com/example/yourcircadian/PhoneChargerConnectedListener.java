@@ -29,7 +29,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             //textView1.setText("Conectado");
-            textView1.setText(String.valueOf(currentTime));
+            textView1.setText(String.valueOf(currentTime));          //Mon Dec 27 16:09:45 GMT+00:00 2021
             long id = dbRegistros.insertarRegistro("algo");
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
             //textView1.setText("Desconectado");
