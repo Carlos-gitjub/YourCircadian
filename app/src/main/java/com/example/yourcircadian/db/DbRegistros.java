@@ -12,7 +12,7 @@ public class DbRegistros extends DbHelper{
         this.context = context;
     }
 
-    public long insertarRegistro(String nombre) {
+    public long insertarRegistro(String noche) {
 
         long id = 0;
 
@@ -25,7 +25,7 @@ public class DbRegistros extends DbHelper{
         object represents a single table row as a map of column names to values.*/
 
             ContentValues values = new ContentValues();
-            values.put("nombre", nombre);
+            values.put("noche", noche);
 
             id = db.insert(TABLE_REGISTROS, null, values);
 

@@ -21,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_REGISTROS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nombre TEXT NOT NULL)");
+                "noche TEXT NOT NULL)");
     }
 
     @Override
