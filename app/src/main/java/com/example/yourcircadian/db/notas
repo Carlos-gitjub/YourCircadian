@@ -1,0 +1,11 @@
+# No todos los registros son válidos. Casos:
+
+1. Poco tiempo entre Conexión y Desconexión
+2. Par incompleto (C-C ó D-D ó ultimo registro)
+3. Fuera del rango nocturno(21:00PM - 12:00PM)
+4. Duplicados con misma fecha y hora(a veces pasa no sé porqué).
+
+# Duda
+- ¿Los calculos para filtrar registros los hago 1)antes o 2)despues de introducirlos a la DB?
+- Si los hago 2)después:¿Como mantengo la "tabla filtrada" actualizada, sin que tenga qe actualizar
+la tabla entera?
