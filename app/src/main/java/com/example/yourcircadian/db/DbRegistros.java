@@ -36,4 +36,19 @@ public class DbRegistros extends DbHelper{
 
         return id;
     }
+
+    public void rangoNocturno(){
+
+    }
+    public void duplicadosMismaFechaHora(){
+
+    }
+    public void parConex_DesconexImcompleto(){
+
+    }
+    public void tiempoEntreConexionDesconexion(){
+
+    }
+
 }
+

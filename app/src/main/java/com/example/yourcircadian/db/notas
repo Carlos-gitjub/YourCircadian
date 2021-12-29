@@ -1,11 +1,45 @@
-# No todos los registros son válidos. Casos:
+# No todos los registros son válidos. Casos EN ORDEN:
 
-1. Poco tiempo entre Conexión y Desconexión
-2. Par incompleto (C-C ó D-D ó ultimo registro)
-3. Fuera del rango nocturno(21:00PM - 12:00PM)
-4. Duplicados con misma fecha y hora(a veces pasa no sé porqué).
+1º. Fuera del rango nocturno(21:00PM - 12:00PM)
+2º. Duplicados con misma fecha y hora(a veces pasa no sé porqué).
+3º. Par incompleto (C-C ó D-D ó ultimo registro)
+4º. Poco tiempo entre Conexión y Desconexión
 
 # Duda
 - ¿Los calculos para filtrar registros los hago 1)antes o 2)despues de introducirlos a la DB?
 - Si los hago 2)después:¿Como mantengo la "tabla filtrada" actualizada, sin que tenga qe actualizar
 la tabla entera?
+
+=============================================
+Una vez aplico los filtros por orden paso los datos
+a la tabla limpia. Esta tabla limpia se calculará cada
+vez que se pulse el botón "Ver Registros" y cada cierto
+tiempo con un JobScheduler(?).
+===============================================
+1.rangoNocturno()
+Buscamos el minimo elemento de los registros que este entre
+las 21:00 y las 12:00, y el maximo elemento. Obtendremos una
+franja de valores.
+Los pasamos a una segunda tabla, donde se aplicará
+el filtro:
+
+2.duplicadosMismaFechaHora()
+Buscará y eliminará los elementos que existan más de una
+vez, dejando la primera ocurrencia de los mismos. Cuando se
+aplique el filtro a la segunda tabla, los datos resultantes
+se pasaran a una tercera tabla, donde se aplicará el filtro:
+
+3.parConex_DesconexIncompleto()
+Se posiciona en el primer elemento, si tiene "Conexion",
+se asegura que el seguiente tenga "Desconexion". Si no lo
+tiene, elemina ese registro de "Conexion". En el caso del
+que primer elemento sea "Desconexion", elimina el registro
+(los valores de un día tienen que empezar con "Conexion" y
+terminar con "Desconexion siempre"). Cuando se aplique
+el filtro a la segunda tabla, los datos resultantes
+se pasaran a una cuarta tabla, donde se aplicará el filtro:
+
+4.tiempoEntreConexionDesconexion()
+Elimina los pares Conexion-Desconexion cuya diferencia temporal
+sea menor que tres horas y media.
+
