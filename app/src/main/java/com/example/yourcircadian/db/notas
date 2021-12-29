@@ -42,4 +42,9 @@ se pasaran a una cuarta tabla, donde se aplicará el filtro:
 4.tiempoEntreConexionDesconexion()
 Elimina los pares Conexion-Desconexion cuya diferencia temporal
 sea menor que tres horas y media.
-
+========================================================
+Siguiente paso:
+- Separar la tabla de registros en
+"Accion"(Conexion ó Desconexion)
+"Fecha" (Mon Dec 27 2021)
+"Hora" (16:09:45)
