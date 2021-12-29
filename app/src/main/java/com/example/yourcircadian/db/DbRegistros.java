@@ -42,6 +42,18 @@ public class DbRegistros extends DbHelper{
     }
     public void duplicadosMismaFechaHora(){
 
+/*
+        SELECT
+                id,
+                noche
+        FROM(
+                SELECT *,
+                row_number() OVER (PARTITION BY noche ORDER BY id) as RowNbr
+                FROM t_registros
+        ) source
+        WHERE RowNbr = 1 ORDER BY id
+
+*/
     }
     public void parConex_DesconexImcompleto(){
 
