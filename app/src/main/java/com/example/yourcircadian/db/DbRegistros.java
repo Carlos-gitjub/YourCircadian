@@ -26,9 +26,9 @@ public class DbRegistros extends DbHelper{
 
             ContentValues values = new ContentValues();
             values.put("fecha", fecha);
-            values.put("fecha", hora);
-            values.put("fecha", accion);
-            values.put("fecha", filtrada);
+            values.put("hora", hora);
+            values.put("accion", accion);
+            values.put("filtrada", filtrada);
 
             id = db.insert(TABLE_REGISTROS, null, values);
 
