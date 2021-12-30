@@ -32,15 +32,14 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
         String hora = parserHora(registro); //lo separa en dos strings(fecha y hora)
         String fecha = parserFecha(registro);
-        Log.v("PRUEBA", fecha);
+        String filtrada = "0";
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
-            //textView1.setText("Conectado");
             textView1.setText(String.valueOf(currentTime));          //Mon Dec 27 16:09:45 GMT+00:00 2021
-            long id = dbRegistros.insertarRegistro("Conectado " + String.valueOf(currentTime));
+            long id = dbRegistros.insertarRegistro(fecha, hora, "Conexion", filtrada);
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
             //textView1.setText("Desconectado");
             textView1.setText(String.valueOf(currentTime));
-            long id = dbRegistros.insertarRegistro("Desconectado " + String.valueOf(currentTime));
+            long id = dbRegistros.insertarRegistro(fecha, hora, "Desconexion", filtrada);
         }
     }
 
