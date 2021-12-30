@@ -49,6 +49,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
     }
 
     public String parserFecha(String registro){
+        String fecha;
         String mes = registro.substring(4,7);
         switch (mes){
             case "Jan":
@@ -89,7 +90,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
                 break;
             default:
         }
-        String fecha = registro.substring(30,34) + mes + registro.substring(8,10);
+        fecha = registro.substring(30,34) + mes + registro.substring(8,10);
         return fecha;
     }
 }
