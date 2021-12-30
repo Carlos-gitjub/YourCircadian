@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
-        separarStringFechaHora(registro); //lo separa en dos strings(fecha y hora)
+        String hora = parserHora(registro); //lo separa en dos strings(fecha y hora)
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             //textView1.setText("Conectado");
@@ -40,9 +41,55 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
             long id = dbRegistros.insertarRegistro("Desconectado " + String.valueOf(currentTime));
         }
     }
+/*
+    public void parser(String registro){
+       registro.substring(11,19)
+    }
+*/
+    public String parserHora(String registro){
+       String hora = registro.substring(11,13) + registro.substring(14,16) + registro.substring(17,19);
+       return hora;
+    }
 
-    public void separarStringFechaHora(String registro){
-       String hora = registro.substring(11,19);
-       Log.v("PRUEBA", hora);
+    public String parserFecha(String registro){
+        String mes = switch (registro.substring(4,7)){
+            case 'Jan':
+                mes = '01';
+                break;
+            case 'Feb':
+                mes = '02';
+                break;
+            case 'Mar':
+                mes = '03';
+                break;
+            case 'Apr':
+                mes = '04';
+                break;
+            case 'May':
+                mes = '05';
+                break;
+            case 'Jun':
+                mes = '06';
+                break;
+            case 'Jul':
+                mes = '07';
+                break;
+            case 'Aug':
+                mes = '08';
+                break;
+            case 'Sep':
+                mes = '09';
+                break;
+            case 'Oct':
+                mes = '10';
+                break;
+            case 'Nov':
+                mes = '11';
+                break;
+            case 'Dec':
+                mes = '12';
+                break;
+        }
+        String fecha = registro.substring(30,34) + mes + registro.substring(8,10);
     }
 }
