@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
+
+        String registro = "Mon Dec 27 16:09:45 GMT+00:00 2021";
+        String hora = registro.substring(11,13) + registro.substring(14,16) + registro.substring(17,19);
+        Log.v("PRUEBA", hora);
     }
 
     @Override
