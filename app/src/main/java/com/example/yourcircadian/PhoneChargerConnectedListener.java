@@ -53,19 +53,19 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
     public String parserFecha(String registro){
         String mes = switch (registro.substring(4,7)){
-            case 'Jan':
-                mes = '01';
+            case "Jan":
+                mes = "01";
                 break;
-            case 'Feb':
+            case "Feb":
                 mes = '02';
                 break;
-            case 'Mar':
+            case "Mar":
                 mes = '03';
                 break;
-            case 'Apr':
+            case "Apr":
                 mes = '04';
                 break;
-            case 'May':
+            case "May":
                 mes = '05';
                 break;
             case 'Jun':
