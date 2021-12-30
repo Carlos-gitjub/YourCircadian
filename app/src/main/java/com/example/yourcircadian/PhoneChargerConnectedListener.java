@@ -29,8 +29,10 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
-        String hora = parserHora(registro); //lo separa en dos strings(fecha y hora)
 
+        String hora = parserHora(registro); //lo separa en dos strings(fecha y hora)
+        String fecha = parserFecha(registro);
+        Log.v("PRUEBA", fecha);
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             //textView1.setText("Conectado");
             textView1.setText(String.valueOf(currentTime));          //Mon Dec 27 16:09:45 GMT+00:00 2021
@@ -41,55 +43,54 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
             long id = dbRegistros.insertarRegistro("Desconectado " + String.valueOf(currentTime));
         }
     }
-/*
-    public void parser(String registro){
-       registro.substring(11,19)
-    }
-*/
+
     public String parserHora(String registro){
        String hora = registro.substring(11,13) + registro.substring(14,16) + registro.substring(17,19);
        return hora;
     }
 
     public String parserFecha(String registro){
-        String mes = switch (registro.substring(4,7)){
+        String mes = registro.substring(4,7);
+        switch (mes){
             case "Jan":
                 mes = "01";
                 break;
             case "Feb":
-                mes = '02';
+                mes = "02";
                 break;
             case "Mar":
-                mes = '03';
+                mes = "03";
                 break;
             case "Apr":
-                mes = '04';
+                mes = "04";
                 break;
             case "May":
-                mes = '05';
+                mes = "05";
                 break;
-            case 'Jun':
-                mes = '06';
+            case "Jun":
+                mes = "06";
                 break;
-            case 'Jul':
-                mes = '07';
+            case "Jul":
+                mes = "07";
                 break;
-            case 'Aug':
-                mes = '08';
+            case "Aug":
+                mes = "08";
                 break;
-            case 'Sep':
-                mes = '09';
+            case "Sep":
+                mes = "09";
                 break;
-            case 'Oct':
-                mes = '10';
+            case "Oct":
+                mes = "10";
                 break;
-            case 'Nov':
-                mes = '11';
+            case "Nov":
+                mes = "11";
                 break;
-            case 'Dec':
-                mes = '12';
+            case "Dec":
+                mes = "12";
                 break;
+            default:
         }
         String fecha = registro.substring(30,34) + mes + registro.substring(8,10);
+        return fecha;
     }
 }
