@@ -16,18 +16,18 @@ a la tabla limpia. Esta tabla limpia se calculará cada
 vez que se pulse el botón "Ver Registros" y cada cierto
 tiempo con un JobScheduler(?).
 ===============================================
-1.rangoNocturno()
-Buscamos el minimo elemento de los registros que este entre
-las 21:00 y las 12:00, y el maximo elemento. Obtendremos una
-franja de valores.
-Los pasamos a una segunda tabla, donde se aplicará
-el filtro:
-
-2.duplicadosMismaFechaHora()
+1. duplicadosMismaFechaHora()
 Buscará y eliminará los elementos que existan más de una
 vez, dejando la primera ocurrencia de los mismos. Cuando se
 aplique el filtro a la segunda tabla, los datos resultantes
-se pasaran a una tercera tabla, donde se aplicará el filtro:
+se pasaran a una segunda tabla, donde se aplicará el filtro:
+
+2. rangoNocturno()
+Buscamos el minimo elemento de los registros que este entre
+las 21:00 y las 12:00, y el maximo elemento. Obtendremos una
+franja de valores.
+Los pasamos a una tercera tabla, donde se aplicará
+el filtro:
 
 3.parConex_DesconexIncompleto()
 Se posiciona en el primer elemento, si tiene "Conexion",
@@ -35,7 +35,7 @@ se asegura que el seguiente tenga "Desconexion". Si no lo
 tiene, elemina ese registro de "Conexion". En el caso del
 que primer elemento sea "Desconexion", elimina el registro
 (los valores de un día tienen que empezar con "Conexion" y
-terminar con "Desconexion siempre"). Cuando se aplique
+terminar con "Desconexion" siempre). Cuando se aplique
 el filtro a la segunda tabla, los datos resultantes
 se pasaran a una cuarta tabla, donde se aplicará el filtro:
 
