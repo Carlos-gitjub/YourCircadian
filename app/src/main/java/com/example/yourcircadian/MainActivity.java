@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuNuevo:
                 nuevoRegistro();
                 return true;
-
+            case R.id.vistaCalendario:
+                vistaCalendario();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -58,4 +60,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NuevoActivity.class);
         startActivity(intent);
     }
+    private void vistaCalendario(){
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
 }
