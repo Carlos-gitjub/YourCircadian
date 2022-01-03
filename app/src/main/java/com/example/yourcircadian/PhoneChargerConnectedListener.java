@@ -30,27 +30,29 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
 
-        String hora = parserHora(registro); //lo separa en dos strings(fecha y hora)
         String fecha = parserFecha(registro);
-        String filtrada = "0";
+        String hora = parserHora(registro);
+
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
-            textView1.setText(String.valueOf(currentTime));          //Mon Dec 27 16:09:45 GMT+00:00 2021
-            long id = dbRegistros.insertarRegistro(fecha, hora, "Conexion", filtrada);
+            textView1.setText(String.valueOf(currentTime));          //"Mon Dec 27 16:09:45 GMT+00:00 2021"
+            long id = dbRegistros.insertarRegistro(fecha, hora, "Conexion");
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
             //textView1.setText("Desconectado");
             textView1.setText(String.valueOf(currentTime));
-            long id = dbRegistros.insertarRegistro(fecha, hora, "Desconexion", filtrada);
+            long id = dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
         }
     }
 
     public String parserHora(String registro){
-       String hora = registro.substring(11,13) + registro.substring(14,16) + registro.substring(17,19);
+       String hora = registro.substring(11,19);
        return hora;
     }
 
     public String parserFecha(String registro){
         String fecha;
+        String año = registro.substring(30,34);
         String mes = registro.substring(4,7);
+        String dia = registro.substring(8,10);
         switch (mes){
             case "Jan":
                 mes = "01";
@@ -88,9 +90,8 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
             case "Dec":
                 mes = "12";
                 break;
-            default:
         }
-        fecha = registro.substring(30,34) + mes + registro.substring(8,10);
+        fecha = año + "-" + mes + "-" + dia;
         return fecha;
     }
 }
