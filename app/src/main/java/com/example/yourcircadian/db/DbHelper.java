@@ -23,8 +23,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "fecha TEXT NOT NULL," +
                 "hora TEXT NOT NULL," +
-                "accion TEXT NOT NULL," +
-                "filtrada TEXT NOT NULL)"
+                "accion TEXT NOT NULL)"
         );
     }
 
