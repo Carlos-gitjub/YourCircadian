@@ -1,6 +1,7 @@
 package com.example.yourcircadian.db;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
 
@@ -38,7 +39,18 @@ public class DbRegistros extends DbHelper{
 
         return id;
     }
+// Función que:
+// le resta un día menos a las fechas cuyas horas se encuentran entre las 00:00:00 y
+// 12:00:00 para que identifique cada noche de sueño como perteneciente
+// a un mismo dia y no a una mezcla de dos.
+    public void fecha_noche(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String updateQuery = "UPDATE t_registros " +
+                "SET fecha = date(fecha,'-1 days') " +
+                "WHERE hora > '00:00:00' AND hora < '12:00:00'";
 
+        Cursor cursor = db.rawQuery(updateQuery, null);
+    }
     public void rangoNocturno(){
 
     }
