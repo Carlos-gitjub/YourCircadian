@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.yourcircadian.db.DbHelper;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     private PhoneChargerConnectedListener myPhoneChargerConnectedListener;
 
@@ -22,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        TextView textView1;
+        textView1 = (TextView) findViewById(R.id.textView1);
+        textView1.setText(String.valueOf(currentTime));
+
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
-
-        String registro = "Mon Dec 27 16:09:45 GMT+00:00 2021";
-        String hora = registro.substring(11,13) + registro.substring(14,16) + registro.substring(17,19);
-        Log.v("PRUEBA", hora);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
