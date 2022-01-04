@@ -24,5 +24,11 @@
                android:name="android.support.PARENT_ACTIVITY"
                android:value=".MainActivity"/>
         </activity>
+        <activity android:name=".ShowDateActivity"
+            android:parentActivityName=".CalendarActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CalendarActivity"/>
+        </activity>
     </application>
 </manifest>

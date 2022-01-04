@@ -24,10 +24,13 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
                 String YYYY = String.valueOf(year);
-                String MM = String.valueOf(month);
+                String MM = String.valueOf(month); //Formato: los meses los pasa del 0 al 11.
                 String DD = String.valueOf(dayOfMonth);
+                String date = YYYY + " " + MM + " " + DD;
 
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
             }
         });
     }
