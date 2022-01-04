@@ -7,6 +7,7 @@ import android.widget.CalendarView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.yourcircadian.db.DbRegistros;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -100,6 +101,7 @@ public class CalendarActivity extends AppCompatActivity {
                 }
 
                 String date = YYYY + "-" + MM + "-" + DD;
+
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
                 intent.putExtra("date", date);
                 startActivity(intent);

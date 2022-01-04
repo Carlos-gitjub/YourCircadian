@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.yourcircadian.db.DbRegistros;
+
 public class ShowDateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -16,8 +18,12 @@ public class ShowDateActivity extends AppCompatActivity {
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
 
+        DbRegistros dbRegistros = new DbRegistros(ShowDateActivity.this);
+        String registros = dbRegistros.mostrarRegistroAPartirDeFecha(date);
+
+
         TextView textView;
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText(String.valueOf(date));
+        textView.setText(registros);
     }
 }

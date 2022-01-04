@@ -25,6 +25,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "hora TEXT NOT NULL," +
                 "accion TEXT NOT NULL)"
         );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + TABLE_REGISTROS + "(fecha, hora, accion) " + "VALUES('2022-01-04','19:32:34', 'Desconexion'),('2022-01-04','20:24:46', 'Conexion');"
+        );
     }
 
     @Override

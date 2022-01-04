@@ -3,6 +3,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 public class DbRegistros extends DbHelper{
@@ -43,6 +45,38 @@ public class DbRegistros extends DbHelper{
 // le resta un día menos a las fechas cuyas horas se encuentran entre las 00:00:00 y
 // 12:00:00 para que identifique cada noche de sueño como perteneciente
 // a un mismo dia y no a una mezcla de dos.
+
+    public String mostrarRegistroAPartirDeFecha(String date) {
+        String row;
+        String result = "Resultados:";
+        try {
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            Cursor c = db.rawQuery("SELECT fecha,hora,accion FROM t_registros WHERE fecha = " + date, null);
+            if (c.moveToFirst()){
+                do {
+                    // Passing values
+                    String fecha = c.getString(0);
+                    String hora = c.getString(1);
+                    String accion = c.getString(2);
+                    // Do something Here with values
+                    Log.v("PRUEBA:",fecha + hora + accion);
+                    row = fecha + " " + hora + " " + accion;
+                    result = result + "/n" + row;
+                } while(c.moveToNext());
+
+            }
+            c.close();
+            db.close();
+
+        }catch(Exception ex){
+            ex.toString();
+        }
+
+        return result;
+    }
+
     public void fecha_noche(){
         SQLiteDatabase db = this.getWritableDatabase();
         String updateQuery = "UPDATE t_registros " +
