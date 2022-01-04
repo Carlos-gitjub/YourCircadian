@@ -25,9 +25,81 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
                 String YYYY = String.valueOf(year);
                 String MM = String.valueOf(month); //Formato: los meses los pasa del 0 al 11.
+                //Pasamos mes a correcto formato
+                switch (MM){
+                    case "0":
+                        MM = "01";
+                        break;
+                    case "1":
+                        MM = "02";
+                        break;
+                    case "2":
+                        MM = "03";
+                        break;
+                    case "3":
+                        MM = "04";
+                        break;
+                    case "4":
+                        MM = "05";
+                        break;
+                    case "5":
+                        MM = "06";
+                        break;
+                    case "6":
+                        MM = "07";
+                        break;
+                    case "7":
+                        MM = "08";
+                        break;
+                    case "8":
+                        MM = "09";
+                        break;
+                    case "9":
+                        MM = "10";
+                        break;
+                    case "10":
+                        MM = "11";
+                        break;
+                    case "11":
+                        MM = "12";
+                        break;
+                }
                 String DD = String.valueOf(dayOfMonth);
-                String date = YYYY + " " + MM + " " + DD;
+                //Pasamos DD (dia) a correcto formato si está incorrecto
+                switch (DD){
+                    case "0":
+                        DD = "00";
+                        break;
+                    case "1":
+                        DD = "01";
+                        break;
+                    case "2":
+                        DD = "02";
+                        break;
+                    case "3":
+                        DD = "03";
+                        break;
+                    case "4":
+                        DD = "04";
+                        break;
+                    case "5":
+                        DD = "05";
+                        break;
+                    case "6":
+                        DD = "06";
+                        break;
+                    case "7":
+                        DD = "07";
+                        break;
+                    case "8":
+                        DD = "08";
+                        break;
+                    case "9":
+                        DD = "09";
+                        break;
+                }
 
+                String date = YYYY + "-" + MM + "-" + DD;
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
                 intent.putExtra("date", date);
                 startActivity(intent);
