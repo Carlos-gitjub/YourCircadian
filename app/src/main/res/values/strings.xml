@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">YourCircadian</string>
+    <string name="vista_calendario">Vista Calendario</string>
 </resources>
