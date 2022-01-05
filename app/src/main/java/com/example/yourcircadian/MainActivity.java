@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
     }
 
+    //Menú superior
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_principal, menu);
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Acciones cuando la app está en segundo plano
     @Override
     protected void onResume() {
         super.onResume();
