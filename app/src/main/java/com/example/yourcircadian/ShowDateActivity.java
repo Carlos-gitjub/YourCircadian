@@ -6,24 +6,36 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourcircadian.adaptadores.listaRegistrosAdapter;
 import com.example.yourcircadian.db.DbRegistros;
+import com.example.yourcircadian.entidades.Registros;
+
+import java.util.ArrayList;
 
 public class ShowDateActivity extends AppCompatActivity {
+
+    RecyclerView listaRegistros;
+    ArrayList<Registros> listaArrayRegistros;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.date_layout);
 
+        listaRegistros = findViewById(R.id.listaRegistros);
+        listaRegistros.setLayoutManager(new LinearLayoutManager(this));
+
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
 
         DbRegistros dbRegistros = new DbRegistros(ShowDateActivity.this);
-        String registros = dbRegistros.mostrarRegistroAPartirDeFecha(date);
 
+        listaArrayRegistros = new ArrayList<>();
 
-        TextView textView;
-        textView = (TextView) findViewById(R.id.textView);
-        textView.setText(registros);
+        listaRegistrosAdapter adapter = new listaRegistrosAdapter(dbRegistros.mostrarRegistroAPartirDeFecha(date));
+        listaRegistros.setAdapter(adapter);
     }
 }

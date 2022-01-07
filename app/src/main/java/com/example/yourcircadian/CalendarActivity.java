@@ -24,6 +24,7 @@ public class CalendarActivity extends AppCompatActivity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
+                String date;
                 String YYYY = String.valueOf(year);
                 String MM = String.valueOf(month); //Formato: los meses los pasa del 0 al 11.
                 //Pasamos mes a correcto formato
@@ -68,9 +69,6 @@ public class CalendarActivity extends AppCompatActivity {
                 String DD = String.valueOf(dayOfMonth);
                 //Pasamos DD (dia) a correcto formato si está incorrecto
                 switch (DD){
-                    case "0":
-                        DD = "00";
-                        break;
                     case "1":
                         DD = "01";
                         break;
@@ -100,7 +98,7 @@ public class CalendarActivity extends AppCompatActivity {
                         break;
                 }
 
-                String date = YYYY + "-" + MM + "-" + DD;
+                date = YYYY + "-" + MM + "-" + DD;
 
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
                 intent.putExtra("date", date);
