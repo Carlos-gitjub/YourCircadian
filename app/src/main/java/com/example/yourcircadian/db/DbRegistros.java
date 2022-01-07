@@ -7,6 +7,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.yourcircadian.entidades.Registros;
+
+import java.util.ArrayList;
+
 public class DbRegistros extends DbHelper{
     Context context;
 
@@ -46,37 +50,31 @@ public class DbRegistros extends DbHelper{
 // 12:00:00 para que identifique cada noche de sueño como perteneciente
 // a un mismo dia y no a una mezcla de dos.
 
-    public String mostrarRegistroAPartirDeFecha(String date) {
-        String row;
-        String result = "Resultados:";
-        try {
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+    public ArrayList<Registros> mostrarRegistroAPartirDeFecha(String date) {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = this.getWritableDatabase();
 
-            Cursor c = db.rawQuery("SELECT fecha,hora,accion FROM t_registros WHERE fecha = " + date, null);
-            if (c.moveToFirst()){
-                do {
-                    // Passing values
-                    String fecha = c.getString(0);
-                    String hora = c.getString(1);
-                    String accion = c.getString(2);
-                    // Do something Here with values
-                    Log.v("PRUEBA:",fecha + hora + accion);
-                    row = fecha + " " + hora + " " + accion;
-                    result = result + "/n" + row;
-                } while(c.moveToNext());
+        ArrayList<Registros> listaRegistros = new ArrayList<>();
+        Registros registro = null;
+        Cursor cursorRegistros = null;
+        String query = "SELECT fecha, hora, accion FROM " + TABLE_REGISTROS ;
+        cursorRegistros = db.rawQuery(query, null);
 
-            }
-            c.close();
-            db.close();
-
-        }catch(Exception ex){
-            ex.toString();
+        if(cursorRegistros.moveToFirst()){
+            do{
+                registro = new Registros();
+                registro.setFecha(cursorRegistros.getString(0));
+                registro.setHora(cursorRegistros.getString(1));
+                registro.setAccion(cursorRegistros.getString(2));
+                listaRegistros.add(registro);
+            }while (cursorRegistros.moveToNext());
         }
 
-        return result;
-    }
+        cursorRegistros.close();
+        return listaRegistros;
 
+    }
+/*
     public void fecha_noche(){
         SQLiteDatabase db = this.getWritableDatabase();
         String updateQuery = "UPDATE t_registros " +
@@ -84,7 +82,7 @@ public class DbRegistros extends DbHelper{
                 "WHERE hora > '00:00:00' AND hora < '12:00:00'";
 
         Cursor cursor = db.rawQuery(updateQuery, null);
-    }
+    }*/
     public void rangoNocturno(){
 
     }
