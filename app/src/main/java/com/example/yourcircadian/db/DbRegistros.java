@@ -57,7 +57,7 @@ public class DbRegistros extends DbHelper{
         ArrayList<Registros> listaRegistros = new ArrayList<>();
         Registros registro = null;
         Cursor cursorRegistros = null;
-        String query = "SELECT fecha, hora, accion FROM " + TABLE_REGISTROS ;
+        String query = "SELECT fecha, hora, accion FROM " + TABLE_REGISTROS + " WHERE fecha = " + "'"+date+"'";
         cursorRegistros = db.rawQuery(query, null);
 
         if(cursorRegistros.moveToFirst()){
