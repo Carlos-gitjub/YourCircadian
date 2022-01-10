@@ -87,20 +87,19 @@ public class DbRegistros extends DbHelper{
 
     }
     public void duplicadosMismaFechaHora(){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorDuplicados = null;
+        String query =
+                "DELETE FROM " + TABLE_REGISTROS + " WHERE id NOT IN" +
+                "(" +
+                "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
+                ")";
 
-/*
-        SELECT
-                id,
-                noche
-        FROM(
-                SELECT *,
-                row_number() OVER (PARTITION BY noche ORDER BY id) as RowNbr
-                FROM t_registros
-        ) source
-        WHERE RowNbr = 1 ORDER BY id
-
-*/
+        cursorDuplicados = db.rawQuery(query, null);
+        cursorDuplicados.close();
     }
+
     public void parConex_DesconexImcompleto(){
 
     }
