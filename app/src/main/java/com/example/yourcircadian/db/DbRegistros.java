@@ -74,6 +74,28 @@ public class DbRegistros extends DbHelper{
         return listaRegistros;
 
     }
+    /*
+    public void transaccionParaDepurarBaseDatos(){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try{
+            String query =
+            "BEGIN TRANSACTION;" +
+                "DELETE FROM t_registros WHERE id NOT IN" +
+                    "(" +
+                    "SELECT MIN(id) FROM t_registros GROUP BY fecha, hora, accion" +
+                    ");" +
+
+                "DELETE FROM t_registros" +
+                    " WHERE hora < '21:00:00' AND hora > '12:00:00';" +
+            "COMMIT;";
+            db.rawQuery(query, null);
+        }catch (Exception ex){
+            String rollback = "ROLLBACK;";
+            db.rawQuery(rollback, null);
+        }
+    }
+     */
 /*
     public void fecha_noche(){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -84,20 +106,33 @@ public class DbRegistros extends DbHelper{
         Cursor cursor = db.rawQuery(updateQuery, null);
     }*/
     public void rangoNocturno(){
+        //Esta función elimina los valores que no se encuentran dentro del horario normal de sueño,
+        //en este caso se ha establecido desde las 21:00 hasta las 12:00
 
+        String horaMin = "21:00:00";
+        String horaMax = "12:00:00";
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query =
+                "DELETE FROM " + TABLE_REGISTROS +
+                        " WHERE hora < '21:00:00' AND hora > '12:00:00'";
+        db.rawQuery(query, null);
     }
     public void duplicadosMismaFechaHora(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursorDuplicados = null;
         String query =
                 "DELETE FROM " + TABLE_REGISTROS + " WHERE id NOT IN" +
                 "(" +
                 "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
                 ")";
 
-        cursorDuplicados = db.rawQuery(query, null);
-        cursorDuplicados.close();
+        db.rawQuery(query, null);
+    }
+
+    public void depurarYActualizarTabla(){
+        rangoNocturno();
+        duplicadosMismaFechaHora();
     }
 
     public void parConex_DesconexImcompleto(){

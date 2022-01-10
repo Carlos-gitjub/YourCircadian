@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.yourcircadian.db.DbHelper;
+import com.example.yourcircadian.db.DbRegistros;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
+
     }
 
     //Menú superior
@@ -44,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.vistaCalendario:
-                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-                startActivity(intent);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // yourMethod();
+                        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                        startActivity(intent);
+                    }
+                }, 4000);   //5 seconds
+
+
                 return true;
 
             default:
