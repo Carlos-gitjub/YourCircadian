@@ -51,7 +51,6 @@ public class DbRegistros extends DbHelper{
 // a un mismo dia y no a una mezcla de dos.
 
     public ArrayList<Registros> mostrarRegistroAPartirDeFecha(String date) {
-        DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Registros> listaRegistros = new ArrayList<>();
@@ -74,28 +73,34 @@ public class DbRegistros extends DbHelper{
         return listaRegistros;
 
     }
-    /*
-    public void transaccionParaDepurarBaseDatos(){
+    public void transaccionParaMantenerIntegridadBaseDatos(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        try{
-            String query =
-            "BEGIN TRANSACTION;" +
-                "DELETE FROM t_registros WHERE id NOT IN" +
+        //try{
+            String query1 =
+            "BEGIN TRANSACTION; ";
+            String query2 =
+                "DELETE FROM " +TABLE_REGISTROS + " WHERE id NOT IN" +
                     "(" +
-                    "SELECT MIN(id) FROM t_registros GROUP BY fecha, hora, accion" +
-                    ");" +
+                    "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
+                    ");";
+            String query3 =
+                "DELETE FROM " + TABLE_REGISTROS +
+                    " WHERE hora < '21:00:00' AND hora > '12:00:00';";
+            String query4 = "COMMIT;";
 
-                "DELETE FROM t_registros" +
-                    " WHERE hora < '21:00:00' AND hora > '12:00:00';" +
-            "COMMIT;";
-            db.rawQuery(query, null);
+            db.rawQuery(query1, null);
+            db.rawQuery(query2, null);
+            db.rawQuery(query3, null);
+            db.rawQuery(query4, null);
+
+            /*
         }catch (Exception ex){
             String rollback = "ROLLBACK;";
             db.rawQuery(rollback, null);
         }
+        */
     }
-     */
 /*
     public void fecha_noche(){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -111,7 +116,6 @@ public class DbRegistros extends DbHelper{
 
         String horaMin = "21:00:00";
         String horaMax = "12:00:00";
-        DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = this.getWritableDatabase();
         String query =
                 "DELETE FROM " + TABLE_REGISTROS +
@@ -119,7 +123,6 @@ public class DbRegistros extends DbHelper{
         db.rawQuery(query, null);
     }
     public void duplicadosMismaFechaHora(){
-        DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = this.getWritableDatabase();
         String query =
                 "DELETE FROM " + TABLE_REGISTROS + " WHERE id NOT IN" +

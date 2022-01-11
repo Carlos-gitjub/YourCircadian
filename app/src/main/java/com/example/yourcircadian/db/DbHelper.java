@@ -29,7 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "INSERT INTO " + TABLE_REGISTROS + " (fecha, hora, accion) " +
                         "VALUES" +
                             "('2022-01-04','19:32:34', 'Desconexion')," +
-                            "('2022-01-04','20:24:46', 'Conexion')," +
+                            "('2022-01-04','20:24:47', 'Conexion')," +
                             "('2022-01-10','11:50:00','Conexion')," +
                             "('2022-01-10','11:50:00','Conexion')"
         );
