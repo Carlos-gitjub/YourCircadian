@@ -21,6 +21,10 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.calendar_layout);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
+        //PRUEBA:
+        DbRegistros dbRegistros = new DbRegistros(CalendarActivity.this);
+        dbRegistros.transaccionParaMantenerIntegridadBaseDatos();
+
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {

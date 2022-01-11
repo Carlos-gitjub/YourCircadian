@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.vistaCalendario:
 
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
