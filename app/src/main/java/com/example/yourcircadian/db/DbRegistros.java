@@ -11,7 +11,7 @@ import com.example.yourcircadian.entidades.Registros;
 
 import java.util.ArrayList;
 
-public class DbRegistros extends DbHelper{
+public class DbRegistros extends DbHelper implements FunctionsData{
     Context context;
 
     public DbRegistros(@Nullable Context context) {
@@ -20,9 +20,7 @@ public class DbRegistros extends DbHelper{
     }
 
     public long insertarRegistro(String fecha, String hora, String accion) {
-
         long id = 0;
-
         try {
 
             DbHelper dbHelper = new DbHelper(context);
@@ -42,10 +40,10 @@ public class DbRegistros extends DbHelper{
         }catch(Exception ex){
             ex.toString();
         }
-
         return id;
     }
-// Función que:
+
+// Función a continución, que:
 // le resta un día menos a las fechas cuyas horas se encuentran entre las 00:00:00 y
 // 12:00:00 para que identifique cada noche de sueño como perteneciente
 // a un mismo dia y no a una mezcla de dos.
@@ -73,69 +71,35 @@ public class DbRegistros extends DbHelper{
         return listaRegistros;
 
     }
-    public void transaccionParaMantenerIntegridadBaseDatos(){
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //try{
-            String query1 =
-            "BEGIN TRANSACTION; ";
-            String query2 =
-                "DELETE FROM " +TABLE_REGISTROS + " WHERE id NOT IN" +
-                    "(" +
-                    "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
-                    ");";
-            String query3 =
-                "DELETE FROM " + TABLE_REGISTROS +
-                    " WHERE hora < '21:00:00' AND hora > '12:00:00';";
-            String query4 = "COMMIT;";
 
-            db.rawQuery(query1, null);
-            db.rawQuery(query2, null);
-            db.rawQuery(query3, null);
-            db.rawQuery(query4, null);
 
-            /*
-        }catch (Exception ex){
-            String rollback = "ROLLBACK;";
-            db.rawQuery(rollback, null);
-        }
-        */
-    }
-/*
-    public void fecha_noche(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String updateQuery = "UPDATE t_registros " +
-                "SET fecha = date(fecha,'-1 days') " +
-                "WHERE hora > '00:00:00' AND hora < '12:00:00'";
-
-        Cursor cursor = db.rawQuery(updateQuery, null);
-    }*/
     public void rangoNocturno(){
         //Esta función elimina los valores que no se encuentran dentro del horario normal de sueño,
         //en este caso se ha establecido desde las 21:00 hasta las 12:00
 
         String horaMin = "21:00:00";
         String horaMax = "12:00:00";
+        DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = this.getWritableDatabase();
         String query =
                 "DELETE FROM " + TABLE_REGISTROS +
                         " WHERE hora < '21:00:00' AND hora > '12:00:00'";
-        db.rawQuery(query, null);
+        db.execSQL(query);
     }
     public void duplicadosMismaFechaHora(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String query =
                 "DELETE FROM " + TABLE_REGISTROS + " WHERE id NOT IN" +
                 "(" +
                 "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
                 ")";
-
-        db.rawQuery(query, null);
+        db.execSQL(query);
     }
 
     public void depurarYActualizarTabla(){
-        rangoNocturno();
-        duplicadosMismaFechaHora();
+        this.rangoNocturno();
+        this.duplicadosMismaFechaHora();
     }
 
     public void parConex_DesconexImcompleto(){
