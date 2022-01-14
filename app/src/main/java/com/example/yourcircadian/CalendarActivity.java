@@ -23,7 +23,6 @@ public class CalendarActivity extends AppCompatActivity {
 
         //PRUEBA:
         DbRegistros dbRegistros = new DbRegistros(CalendarActivity.this);
-        dbRegistros.transaccionParaMantenerIntegridadBaseDatos();
 
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

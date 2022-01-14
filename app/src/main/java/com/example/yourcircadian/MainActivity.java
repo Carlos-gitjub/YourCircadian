@@ -47,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.vistaCalendario:
-
-
+                DbRegistros dbRegistros = new DbRegistros(MainActivity.this);
+                dbRegistros.duplicadosMismaFechaHora();
+                dbRegistros.rangoNocturno();
+                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent);
+/*
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
@@ -57,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }, 4000);   //5 seconds
-
-
+*/
                 return true;
 
             default:
