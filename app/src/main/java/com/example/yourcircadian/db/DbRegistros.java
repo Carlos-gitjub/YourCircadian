@@ -97,6 +97,21 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         db.execSQL(query);
     }
 
+
+    public void paresIncompletos() {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String query = "";
+        db.execSQL(query);
+    }
+
+    public void masDe14HorasDurmiendo() {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String query = "";
+        db.execSQL(query);
+    }
+
     public void depurarYActualizarTabla(){
         this.rangoNocturno();
         this.duplicadosMismaFechaHora();
