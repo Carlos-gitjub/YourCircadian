@@ -11,4 +11,5 @@ public interface FunctionsData {
     void duplicadosMismaFechaHora();
     void paresIncompletos();
     void masDe14HorasDurmiendo();
+    String hora_a_la_que_se_levanta();
 }

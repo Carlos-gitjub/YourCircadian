@@ -27,14 +27,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Date currentTime = Calendar.getInstance().getTime();
-        TextView textView1;
-        textView1 = (TextView) findViewById(R.id.textView1);
-        textView1.setText(String.valueOf(currentTime));
-
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
+        DbRegistros dbRegistros = new DbRegistros(this);
 
+        TextView textView1;
+        textView1 = (TextView) findViewById(R.id.textView1);
+        //Date currentTime = Calendar.getInstance().getTime();
+        //textView1.setText(String.valueOf(currentTime));
+        textView1.setText(dbRegistros.hora_a_la_que_se_levanta());
     }
 
     //Menú superior
