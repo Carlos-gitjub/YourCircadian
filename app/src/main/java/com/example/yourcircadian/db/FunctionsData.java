@@ -9,6 +9,7 @@ public interface FunctionsData {
     ArrayList<Registros> mostrarRegistroAPartirDeFecha(String date);
     void rangoNocturno();
     void duplicadosMismaFechaHora();
+    //void lapsosDeTiempoPequenios();
     void paresIncompletos();
     void masDe14HorasDurmiendo();
     String hora_a_la_que_se_levanta();
