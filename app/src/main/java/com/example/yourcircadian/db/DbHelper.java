@@ -28,10 +28,19 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 "INSERT INTO " + TABLE_REGISTROS + " (fecha, hora, accion) " +
                         "VALUES" +
-                            "('2022-01-04','19:32:34', 'Desconexion')," +
-                            "('2022-01-04','20:24:47', 'Conexion')," +
-                            "('2022-01-10','11:50:00','Conexion')," +
-                            "('2022-01-10','11:50:00','Conexion')"
+                            //Repetidos
+                            "('2022-01-04','07:40:00','Desconexion')," +
+                            "('2022-01-04','07:40:00','Desconexion')," +
+                            //fueraDeRango
+                            "('2022-01-15','12:40:00','Conexion')," +
+                            "('2022-01-15','20:40:00','Desconexion')," +
+                            //parIncompleto
+                            "('2022-01-15','23:40:00','Desconexion')," +
+                            "('2022-01-16','09:40:00','Desconexion')," +
+                            //masDe14HorasDurmiendo
+                            "('2022-01-16','23:30:00','Conexion')," +
+                            "('2022-01-17','22:10:00','Desconexion')"
+
         );
     }
 

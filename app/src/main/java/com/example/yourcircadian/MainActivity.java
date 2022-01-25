@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.example.yourcircadian.db.DbHelper;
 import com.example.yourcircadian.db.DbRegistros;
+import com.example.yourcircadian.entidades.Registros;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
         DbRegistros dbRegistros = new DbRegistros(this);
 
+
+
         TextView textView1;
         textView1 = (TextView) findViewById(R.id.textView1);
         //Date currentTime = Calendar.getInstance().getTime();
         //textView1.setText(String.valueOf(currentTime));
-        textView1.setText(dbRegistros.hora_a_la_que_se_levanta());
+        textView1.setText("Te levantastes a las: " + dbRegistros.hora_a_la_que_se_levanta());
     }
 
     //Menú superior
@@ -49,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.vistaCalendario:
                 DbRegistros dbRegistros = new DbRegistros(MainActivity.this);
-                dbRegistros.duplicadosMismaFechaHora();
                 dbRegistros.rangoNocturno();
+                //dbRegistros.duplicadosMismaFechaHora();
+                //dbRegistros.paresIncompletos();
+                //dbRegistros.masDe14HorasDurmiendo();
+
                 Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
                 startActivity(intent);
 /*
