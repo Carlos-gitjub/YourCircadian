@@ -19,8 +19,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         this.context = context;
     }
 
-    public long insertarRegistro(String fecha, String hora, String accion) {
-        long id = 0;
+    public void insertarRegistro(String fecha, String hora, String accion) {
         try {
 
             DbHelper dbHelper = new DbHelper(context);
@@ -34,13 +33,12 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             values.put("hora", hora);
             values.put("accion", accion);
 
-            id = db.insert(TABLE_REGISTROS, null, values);
+            db.insert(TABLE_REGISTROS, null, values);
 
-            return id;
+
         }catch(Exception ex){
             ex.toString();
         }
-        return id;
     }
 
 // Función a continución, que:
