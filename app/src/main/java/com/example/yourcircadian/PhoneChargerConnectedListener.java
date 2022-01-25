@@ -35,11 +35,10 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             textView1.setText(String.valueOf(currentTime));          //"Mon Dec 27 16:09:45 GMT+00:00 2021"
-            long id = dbRegistros.insertarRegistro(fecha, hora, "Conexion");
+            dbRegistros.insertarRegistro(fecha, hora, "Conexion");
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
-            //textView1.setText("Desconectado");
             textView1.setText(String.valueOf(currentTime));
-            long id = dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
+            dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
         }
     }
 
@@ -50,9 +49,10 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
     public String parserFecha(String registro){
         String fecha;
-        String año = registro.substring(30,34);
-        String mes = registro.substring(4,7);
-        String dia = registro.substring(8,10);
+        String[] splitted_parts = registro.split(" ");
+        String año = splitted_parts[5];
+        String mes = splitted_parts[1];
+        String dia = splitted_parts[2];
         switch (mes){
             case "Jan":
                 mes = "01";
