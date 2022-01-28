@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.vistaCalendario:
                 DbRegistros dbRegistros = new DbRegistros(MainActivity.this);
-                dbRegistros.rangoNocturno();
+                //dbRegistros.rangoNocturno();
                 //dbRegistros.duplicadosMismaFechaHora();
                 //dbRegistros.paresIncompletos();
                 //dbRegistros.masDe14HorasDurmiendo();
