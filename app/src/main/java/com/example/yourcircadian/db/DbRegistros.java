@@ -117,12 +117,30 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         String hora;
 
         Cursor cursorRegistros = null;
-        String query = "SELECT hora FROM " + TABLE_REGISTROS + " WHERE id = (SELECT MAX(id) FROM " + TABLE_REGISTROS +" WHERE accion = 'Desconexion')";
+        String query = "SELECT hora FROM t_registros WHERE id = (SELECT MAX(id) FROM t_registros WHERE hora > '21:00:00' OR hora < '12:00:00' AND accion = 'Desconexion')";
         cursorRegistros = db.rawQuery(query, null);
         if(cursorRegistros.moveToFirst()){
            do{
                 hora_con_segundos = cursorRegistros.getString(0);
            }while (cursorRegistros.moveToNext());
+        }
+        hora = hora_con_segundos.substring(0,5);
+
+        cursorRegistros.close();
+        return hora;
+    }
+    public String hora_a_la_que_se_acuesta() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String hora_con_segundos = null;
+        String hora;
+
+        Cursor cursorRegistros = null;
+        String query = "SELECT hora FROM t_registros WHERE id = (SELECT max(id) FROM t_registros WHERE hora > '21:00:00' OR hora < '12:00:00' AND accion = 'Conexion')";
+        cursorRegistros = db.rawQuery(query, null);
+        if(cursorRegistros.moveToFirst()){
+            do{
+                hora_con_segundos = cursorRegistros.getString(0);
+            }while (cursorRegistros.moveToNext());
         }
         hora = hora_con_segundos.substring(0,5);
 

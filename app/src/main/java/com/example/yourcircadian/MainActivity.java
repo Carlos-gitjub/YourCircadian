@@ -36,10 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView textView1;
+        TextView textView2;
         textView1 = (TextView) findViewById(R.id.textView1);
+        textView2 = (TextView) findViewById(R.id.textView2);
         //Date currentTime = Calendar.getInstance().getTime();
         //textView1.setText(String.valueOf(currentTime));
-        textView1.setText("Te levantastes a las: " + dbRegistros.hora_a_la_que_se_levanta());
+        textView1.setText("Te levantastes a las " + dbRegistros.hora_a_la_que_se_levanta());
+        textView2.setText("Te acostastes a las " +  dbRegistros.hora_a_la_que_se_acuesta());
     }
 
     //Menú superior
