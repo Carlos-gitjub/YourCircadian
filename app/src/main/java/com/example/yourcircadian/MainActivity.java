@@ -2,10 +2,13 @@ package com.example.yourcircadian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,35 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        readWeatherData();
+        createAndSaveData();
     }
-    private List<WeatherSample> weatherSamples = new ArrayList<>();
-    public void readWeatherData() {
-        InputStream is = getResources().openRawResource(R.raw.data);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-
-        String line = "";
+    public void createAndSaveData(){
+        String FILENAME = "registros.csv";
+        String registro = "2022-02-07" + "," + "23:30:00" + "," + "Conexion" + "\n";
         try {
-            //Step over headers
-            reader.readLine();
-
-            while ((line = reader.readLine()) != null) {
-                // Split by ','
-                String[] tokens = line.split(",");
-
-                // Read the data
-                WeatherSample sample = new WeatherSample();
-                sample.setMonth(tokens[0]);
-                sample.setRainfall(Double.parseDouble(tokens[1]));
-                sample.setSunHours(Integer.parseInt(tokens[2]));
-                weatherSamples.add(sample);
-
-                Log.d("MyActivity", "Just created: " + sample);
-            }
-        } catch (IOException e){
-            Log.wtf("MyActivity", "Error al leer archivo data en linea" + line, e);
+            FileOutputStream out = openFileOutput( FILENAME, Context.MODE_APPEND);
+            out.write(registro.getBytes());
+            out.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
