@@ -1,27 +1,4 @@
-package com.example.yourcircadian;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        readWeatherData();
-    }
+    //LEER ARCHIVO CSV
     private List<WeatherSample> weatherSamples = new ArrayList<>();
     public void readWeatherData() {
         InputStream is = getResources().openRawResource(R.raw.data);
@@ -53,4 +30,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-}
+
+    //
