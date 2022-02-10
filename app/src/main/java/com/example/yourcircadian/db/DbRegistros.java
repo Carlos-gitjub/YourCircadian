@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.yourcircadian.R;
 import com.example.yourcircadian.entidades.Registros;
 
 import java.util.ArrayList;
@@ -161,23 +162,23 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
     }
 
-    public String horas_totales_de_suenio(String date){
+    public ArrayList<Registros> horas_totales_de_suenio(String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        //ArrayList<Registros> listaRegistros = new ArrayList<>();
-        //Registros registro = null;
+        ArrayList<Registros> listaRegistros = new ArrayList<>();
+        Registros registro = null;
         Cursor cursorRegistros = null;
-        String query1="SELECT * FROM t_registros WHERE "+
+
+        String query1="SELECT fecha,hora,accion FROM t_registros WHERE "+
                 "fecha=(SELECT DATE(fecha,'+1 day') FROM t_registros WHERE fecha='"+ date+ "') "+
                 "OR fecha='"+ date+ "'";
         cursorRegistros=db.rawQuery(query1, null);
 
-        ArrayList<Registros> listaRegistros = new ArrayList<>();
+
 
         if(cursorRegistros.moveToFirst()){
             do{
-
-                Registros registro = new Registros();
+                registro = new Registros();
 
                 registro.setFecha(cursorRegistros.getString(0));
                 registro.setHora(cursorRegistros.getString(1));
@@ -187,13 +188,49 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }while (cursorRegistros.moveToNext());
         }
 
-        for(int i=0;i<listaRegistros.size();i++){
-            
+        int h1, m1, h2, m2, enMin1, enMin2;
+        int suenioEnMin, hSuenio, mSuenio;
+        String tDefinitivo;
+        int sumHras = 0;
+        int sumMns = 0;
+        for(int i=1;i<listaRegistros.size();i++) {
+            String h1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(0, 2));
+            String m1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(3, 5));
+            String h2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(0, 2));
+            String m2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(3, 5));
+            int enMin1 = h1 * 60 + m1;
+            int enMin2 = h2 * 60 + m2;
+
+            if (h2 >= 00 && h2 <= 12) {
+                if (h1 >= 21 && h1 <= 23) {
+                    suenioEnMin = 24 * 60 - enMin1 - enMin2;
+                    hSuenio = suenioEnMin / 60;
+                    mSuenio = suenioEnMin % 60;
+                    sumHras = sumHras + hSuenio;
+                    sumMns = sumMns + hSuenio;
+                }
+                if (h1 >= 00 && h1 <= 12) {
+                    suenioEnMin = enMin2 - enMin1;
+                    hSuenio = suenioEnMin / 60;
+                    mSuenio = suenioEnMin % 60;
+                    sumHras = sumHras + hSuenio;
+                    sumMns = sumMns + hSuenio;
+                }
+            }
+        }
+
+        if (sumMns>=60){
+            sum
         }
 
 
 
+        tDefinitivo = Integer.toString(hSuenio)+ "h "+ Integer.toString(mSuenio)+ "min";
+
+
+
         cursorRegistros.close();
+        return listaRegistros;
     }
 
 }

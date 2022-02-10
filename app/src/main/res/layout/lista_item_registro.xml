@@ -16,7 +16,6 @@
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="24sp" />
-
         <TextView
             android:id="@+id/viewHora"
             android:layout_width="match_parent"
