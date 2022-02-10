@@ -39,7 +39,12 @@ public class DbHelper extends SQLiteOpenHelper {
                             "('2022-01-16','09:40:00','Desconexion')," +
                             //masDe14HorasDurmiendo
                             "('2022-01-16','23:30:00','Conexion')," +
-                            "('2022-01-17','22:10:00','Desconexion')"
+                            "('2022-01-17','22:10:00','Desconexion')," +
+                            //horasTotalesSuenio
+                            "('2022-02-09','23:30:00','Conexion')," +
+                            "('2022-02-10','00:30:00','Desconexion')," +
+                            "('2022-02-10','00:45:00','Conexion')," +
+                            "('2022-02-10', '09:15:00','Desconexion')"
 
         );
     }
