@@ -148,6 +148,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return hora;
     }
 
+
     public void depurarYActualizarTabla(){
         this.rangoNocturno();
         this.duplicadosMismaFechaHora();
@@ -158,6 +159,41 @@ public class DbRegistros extends DbHelper implements FunctionsData{
     }
     public void tiempoEntreConexionDesconexion(){
 
+    }
+
+    public String horas_totales_de_suenio(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //ArrayList<Registros> listaRegistros = new ArrayList<>();
+        //Registros registro = null;
+        Cursor cursorRegistros = null;
+        String query1="SELECT * FROM t_registros WHERE "+
+                "fecha=(SELECT DATE(fecha,'+1 day') FROM t_registros WHERE fecha='"+ date+ "') "+
+                "OR fecha='"+ date+ "'";
+        cursorRegistros=db.rawQuery(query1, null);
+
+        ArrayList<Registros> listaRegistros = new ArrayList<>();
+
+        if(cursorRegistros.moveToFirst()){
+            do{
+
+                Registros registro = new Registros();
+
+                registro.setFecha(cursorRegistros.getString(0));
+                registro.setHora(cursorRegistros.getString(1));
+                registro.setAccion(cursorRegistros.getString(2));
+
+                listaRegistros.add(registro);
+            }while (cursorRegistros.moveToNext());
+        }
+
+        for(int i=0;i<listaRegistros.size();i++){
+            
+        }
+
+
+
+        cursorRegistros.close();
     }
 
 }
