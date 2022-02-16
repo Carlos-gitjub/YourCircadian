@@ -190,7 +190,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
         int h1, m1, h2, m2, enMin1, enMin2;
         int suenioEnMin, hSuenio, mSuenio;
-        String tDefinitivo;
+        String tDefinitivo="";
         int sumHras=0;
         int sumMns=0;
         for(int i=1;i<listaRegistros.size();i++) {
@@ -206,15 +206,15 @@ public class DbRegistros extends DbHelper implements FunctionsData{
                     suenioEnMin = 24 * 60 - enMin1 - enMin2;
                     hSuenio = suenioEnMin / 60;
                     mSuenio = suenioEnMin % 60;
-                    sumHras = sumHras + hSuenio;
-                    sumMns = sumMns + hSuenio;
+                    sumHras += hSuenio;
+                    sumMns += mSuenio;
                 }
                 if (h1 >= 00 && h1 <= 12) {
                     suenioEnMin = enMin2 - enMin1;
                     hSuenio = suenioEnMin / 60;
                     mSuenio = suenioEnMin % 60;
-                    sumHras = sumHras + hSuenio;
-                    sumMns = sumMns + hSuenio;
+                    sumHras += hSuenio;
+                    sumMns += mSuenio;
                 }
             }
         }
@@ -224,12 +224,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             sumHras += divisionHras;
             int resto = sumMns%60;
             sumMns = resto;
-
         }
 
 
 
-        tDefinitivo = Integer.toString(hSuenio)+ "h "+ Integer.toString(mSuenio)+ "min";
+        tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
 
 
