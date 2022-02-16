@@ -191,15 +191,15 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         int h1, m1, h2, m2, enMin1, enMin2;
         int suenioEnMin, hSuenio, mSuenio;
         String tDefinitivo;
-        int sumHras = 0;
-        int sumMns = 0;
+        int sumHras=0;
+        int sumMns=0;
         for(int i=1;i<listaRegistros.size();i++) {
-            String h1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(0, 2));
-            String m1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(3, 5));
-            String h2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(0, 2));
-            String m2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(3, 5));
-            int enMin1 = h1 * 60 + m1;
-            int enMin2 = h2 * 60 + m2;
+            h1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(0, 2));
+            m1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(3, 5));
+            h2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(0, 2));
+            m2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(3, 5));
+            enMin1 = h1 * 60 + m1;
+            enMin2 = h2 * 60 + m2;
 
             if (h2 >= 00 && h2 <= 12) {
                 if (h1 >= 21 && h1 <= 23) {
@@ -220,7 +220,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         }
 
         if (sumMns>=60){
-            sum
+            int divisionHras = sumMns/60;
+            sumHras += divisionHras;
+            int resto = sumMns%60;
+            sumMns = resto;
+
         }
 
 
