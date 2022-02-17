@@ -162,7 +162,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
     }
 
-    public ArrayList<Registros> horas_totales_de_suenio(String date){
+    public void horas_totales_de_suenio(String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Registros> listaRegistros = new ArrayList<>();
@@ -230,10 +230,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
         tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
+        // Poner valor de tDefinitivo en un Toast o en los TextView del principio
 
 
         cursorRegistros.close();
-        return listaRegistros;
+        //return listaRegistros;
     }
 
 }
