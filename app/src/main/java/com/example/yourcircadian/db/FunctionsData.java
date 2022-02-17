@@ -14,5 +14,5 @@ public interface FunctionsData {
     void masDe14HorasDurmiendo();
     String hora_a_la_que_se_levanta();
     String hora_a_la_que_se_acuesta();
-    void horas_totales_de_suenio(String date);
+    String horas_totales_de_suenio(String date);
 }

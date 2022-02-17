@@ -35,7 +35,7 @@ public class ShowDateActivity extends AppCompatActivity {
 
         listaArrayRegistros = new ArrayList<>();
 
-        listaRegistrosAdapter adapter = new listaRegistrosAdapter(dbRegistros.horas_totales_de_suenio(date));
-        listaRegistros.setAdapter(adapter);
+        //listaRegistrosAdapter adapter = new listaRegistrosAdapter(dbRegistros.horas_totales_de_suenio(date));
+        //listaRegistros.setAdapter(adapter);
     }
 }

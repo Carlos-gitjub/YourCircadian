@@ -3,6 +3,7 @@ package com.example.yourcircadian;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -102,10 +103,13 @@ public class CalendarActivity extends AppCompatActivity {
                 }
 
                 date = YYYY + "-" + MM + "-" + DD;
-
+                String timeSleep = dbRegistros.horas_totales_de_suenio(date);
+                Toast.makeText(CalendarActivity.this,timeSleep,Toast.LENGTH_LONG).show();
+/*
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
                 intent.putExtra("date", date);
                 startActivity(intent);
+ */
             }
         });
     }
