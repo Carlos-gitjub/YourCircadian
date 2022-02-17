@@ -213,8 +213,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
                     mSuenio = suenioEnMin % 60;
                     sumHras += hSuenio;
                     sumMns += mSuenio;
-                }
-                if (h1 >= 00 && h1 <= 12) {
+                }else if (h1 >= 00 && h1 <= 12) {
                     suenioEnMin = enMin2 - enMin1;
                     hSuenio = suenioEnMin / 60;
                     mSuenio = suenioEnMin % 60;
@@ -231,8 +230,6 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             int resto = sumMns%60;
             sumMns = resto;
         }
-
-
 
         tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
