@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -162,7 +163,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
     }
 
-    public void horas_totales_de_suenio(String date){
+    public String horas_totales_de_suenio(String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Registros> listaRegistros = new ArrayList<>();
@@ -203,7 +204,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
             if (h2 >= 00 && h2 <= 12) {
                 if (h1 >= 21 && h1 <= 23) {
-                    suenioEnMin = 24 * 60 - enMin1 - enMin2;
+                    suenioEnMin = 24 * 60 - enMin1 + enMin2;
                     hSuenio = suenioEnMin / 60;
                     mSuenio = suenioEnMin % 60;
                     sumHras += hSuenio;
@@ -219,6 +220,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }
         }
 
+        //Poner este if dentro de if de arriba
         if (sumMns>=60){
             int divisionHras = sumMns/60;
             sumHras += divisionHras;
@@ -231,9 +233,9 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
         // Poner valor de tDefinitivo en un Toast o en los TextView del principio
-
-
         cursorRegistros.close();
+
+        return tDefinitivo;
         //return listaRegistros;
     }
 

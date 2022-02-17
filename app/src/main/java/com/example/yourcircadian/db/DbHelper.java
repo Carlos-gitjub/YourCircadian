@@ -43,8 +43,8 @@ public class DbHelper extends SQLiteOpenHelper {
                             //horasTotalesSuenio
                             "('2022-02-09','23:30:00','Conexion')," +
                             "('2022-02-10','00:30:00','Desconexion')," +
-                            "('2022-02-10','00:45:00','Conexion')," +
-                            "('2022-02-10', '09:15:00','Desconexion')"
+                            "('2022-02-10','01:30:00','Conexion')," +
+                            "('2022-02-10','09:30:00','Desconexion')"
 
         );
     }
