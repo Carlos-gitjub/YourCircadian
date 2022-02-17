@@ -190,6 +190,8 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         }
 
         int h1, m1, h2, m2, enMin1, enMin2;
+        String accion1="";
+        String accion2="";
         int suenioEnMin, hSuenio, mSuenio;
         String tDefinitivo="";
         int sumHras=0;
@@ -201,8 +203,10 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             m2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(3, 5));
             enMin1 = h1 * 60 + m1;
             enMin2 = h2 * 60 + m2;
+            accion1 = listaRegistros.get(i - 1).getAccion();
+            accion2 = listaRegistros.get(i).getAccion();
 
-            if (h2 >= 00 && h2 <= 12) {
+            if (h2 >= 00 && h2 <= 12 && accion1.equals("Conexion") && accion2.equals("Desconexion")) {
                 if (h1 >= 21 && h1 <= 23) {
                     suenioEnMin = 24 * 60 - enMin1 + enMin2;
                     hSuenio = suenioEnMin / 60;
