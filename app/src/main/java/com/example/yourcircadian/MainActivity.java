@@ -29,16 +29,17 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(series);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"old", "middle", "new"});
-        staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
+        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-        /*
+/*
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
         {
             @Override
             public String formatLabel(double value, boolean isValueX) {
+
                 if(isValueX) {
+
                     if (value == 0) {
                         return "";//+ super.formatLabel(value, isValueX);
                     }
@@ -74,25 +75,28 @@ public class MainActivity extends AppCompatActivity {
                 return super.formatLabel(value, isValueX);
             }
         });
+*/
 
-         */
 
         /*
         //rango que cubre eje X
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMaxX(3);
 
+         */
         //rango que cubre eje Y
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(3);
-        */
+        graph.getViewport().setMaxY(12);
 
-//        series.setSpacing(25);
+
+        series.setSpacing(25);
 
         //valores encima de columnas
- //       series.setDrawValuesOnTop(true);
- //       series.setValuesOnTopColor(Color.RED);
+        //BarGraphSeries<DataPoint> series2;
+        //series.
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(Color.RED);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -114,9 +118,15 @@ public class MainActivity extends AppCompatActivity {
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
                 {
-                        new DataPoint(0,1),
-                        new DataPoint(1,1),
+                        new DataPoint(0,-1),
+                        new DataPoint(1,9),
                         new DataPoint(2,2),
+                        new DataPoint(3,6),
+                        new DataPoint(4,8),
+                        new DataPoint(5,7),
+                        new DataPoint(6,9),
+                        new DataPoint(7,8),
+                        new DataPoint(8,-1)
                         /*
                         new DataPoint(0,-1),
                         new DataPoint(1,8),
