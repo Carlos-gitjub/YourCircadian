@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YourCircadian</string>
     <string name="graph">YourCircadian</string>
+    <string name="grafico2">Grafico 2</string>
 </resources>

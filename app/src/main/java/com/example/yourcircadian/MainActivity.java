@@ -2,11 +2,17 @@ package com.example.yourcircadian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
@@ -21,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
         graph.addSeries(series);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"old", "middle", "new"});
+        staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
 
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
         {
@@ -51,10 +63,26 @@ public class MainActivity extends AppCompatActivity {
                     if (value == 7) {
                         return "D";
                     }
+                    if (value == 8) {
+                        return "";
+                    }
+                } else {
+                    if (value == -1) {
+                        return "";
+                    }
                 }
                 return super.formatLabel(value, isValueX);
             }
         });
+
+        //rango que cubre eje X
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMaxX(9);
+
+        //rango que cubre eje Y
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(12);
 
         series.setSpacing(25);
 
@@ -63,17 +91,34 @@ public class MainActivity extends AppCompatActivity {
         series.setValuesOnTopColor(Color.RED);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.grafico_2:
+                Intent intent = new Intent(MainActivity.this, Activity2.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
                 {
-                        //new DataPoint(0,0),
+                        new DataPoint(0,-1),
                         new DataPoint(1,8),
                         new DataPoint(2,9),
                         new DataPoint(3,7),
                         new DataPoint(4,8),
-                        new DataPoint(5,7.5),
+                        new DataPoint(5,7),
                         new DataPoint(6,4),
-                        new DataPoint(7,8),
+                        new DataPoint(7,6),
+                        new DataPoint(8,-1)
                 };
         return dp;
     }
