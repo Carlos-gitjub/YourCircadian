@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-
+        /*
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
         {
             @Override
@@ -75,20 +75,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+         */
+
+        /*
         //rango que cubre eje X
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMaxX(9);
+        graph.getViewport().setMaxX(3);
 
         //rango que cubre eje Y
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(12);
+        graph.getViewport().setMaxY(3);
+        */
 
-        series.setSpacing(25);
+//        series.setSpacing(25);
 
         //valores encima de columnas
-        series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.RED);
+ //       series.setDrawValuesOnTop(true);
+ //       series.setValuesOnTopColor(Color.RED);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -110,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
                 {
+                        new DataPoint(0,1),
+                        new DataPoint(1,1),
+                        new DataPoint(2,2),
+                        /*
                         new DataPoint(0,-1),
                         new DataPoint(1,8),
                         new DataPoint(2,9),
@@ -119,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
                         new DataPoint(6,4),
                         new DataPoint(7,6),
                         new DataPoint(8,-1)
+
+                         */
                 };
         return dp;
     }
