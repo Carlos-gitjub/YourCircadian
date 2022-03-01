@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         graph.addSeries(series);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"old", "middle", "new"});
-        staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
+        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
 
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if(isValueX) {
+
                     if (value == 0) {
                         return "";//+ super.formatLabel(value, isValueX);
                     }
@@ -66,25 +67,31 @@ public class MainActivity extends AppCompatActivity {
                     if (value == 8) {
                         return "";
                     }
+
                 } else {
-                    if (value == -1) {
+                    if (value == 0) {
                         return "";
                     }
                 }
+
                 return super.formatLabel(value, isValueX);
             }
         });
 
+
+
+        graph.setTitle("horas sueño:");
+
         //rango que cubre eje X
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMaxX(9);
+        graph.getViewport().setMaxX(8);
 
         //rango que cubre eje Y
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(12);
 
-        series.setSpacing(25);
+        series.setSpacing(50);
 
         //valores encima de columnas
         series.setDrawValuesOnTop(true);
@@ -110,15 +117,15 @@ public class MainActivity extends AppCompatActivity {
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
                 {
-                        new DataPoint(0,-1),
-                        new DataPoint(1,8),
+                        new DataPoint(0,0),
+                        new DataPoint(1,8.5),
                         new DataPoint(2,9),
                         new DataPoint(3,7),
                         new DataPoint(4,8),
                         new DataPoint(5,7),
                         new DataPoint(6,4),
                         new DataPoint(7,6),
-                        new DataPoint(8,-1)
+                        //new DataPoint(8,-1)
                 };
         return dp;
     }
