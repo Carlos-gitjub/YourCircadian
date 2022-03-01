@@ -28,18 +28,14 @@ public class MainActivity extends AppCompatActivity {
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
         graph.addSeries(series);
 
-        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
-        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
-        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-/*
+
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
         {
             @Override
             public String formatLabel(double value, boolean isValueX) {
 
                 if(isValueX) {
-
+/*
                     if (value == 0) {
                         return "";//+ super.formatLabel(value, isValueX);
                     }
@@ -67,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     if (value == 8) {
                         return "";
                     }
-                } else {
+                    */
+
+                }else {
                     if (value == -1) {
                         return "";
                     }
@@ -75,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 return super.formatLabel(value, isValueX);
             }
         });
-*/
 
 
         /*
@@ -97,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
         //series.
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
+        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
