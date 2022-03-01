@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
         graph.addSeries(series);
 
+        //El StaticLabelFormatter no pone los valores, pero es necesario dejarlo para que aparezcan
+        //todos los dias de la semana en el eje x y no de dos en dos.
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
         //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 if(isValueX) {
 
                     if (value == 0) {
-                        return "";//+ super.formatLabel(value, isValueX);
+                        return ""; //+ super.formatLabel(value, isValueX);
                     }
                     if (value == 1) {
                         return "L";
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.formatLabel(value, isValueX);
             }
         });
+
 
 
 
