@@ -240,5 +240,82 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         //return listaRegistros;
     }
 
+    public double horas_totales_de_suenio_GraphView(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ArrayList<Registros> listaRegistros = new ArrayList<>();
+        Registros registro = null;
+        Cursor cursorRegistros = null;
+
+        String query1="SELECT fecha,hora,accion FROM t_registros WHERE "+
+                "fecha=(SELECT DATE(fecha,'+1 day') FROM t_registros WHERE fecha='"+ date+ "') "+
+                "OR fecha='"+ date+ "'";
+        cursorRegistros=db.rawQuery(query1, null);
+
+
+
+        if(cursorRegistros.moveToFirst()){
+            do{
+                registro = new Registros();
+
+                registro.setFecha(cursorRegistros.getString(0));
+                registro.setHora(cursorRegistros.getString(1));
+                registro.setAccion(cursorRegistros.getString(2));
+
+                listaRegistros.add(registro);
+            }while (cursorRegistros.moveToNext());
+        }
+
+        int h1, m1, h2, m2, enMin1, enMin2;
+        String accion1="";
+        String accion2="";
+        int suenioEnMin, hSuenio, mSuenio;
+        String tDefinitivo="";
+        int sumHras=0;
+        int sumMns=0;
+        for(int i=1;i<listaRegistros.size();i++) {
+            h1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(0, 2));
+            m1 = Integer.parseInt(listaRegistros.get(i - 1).getHora().substring(3, 5));
+            h2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(0, 2));
+            m2 = Integer.parseInt(listaRegistros.get(i).getHora().substring(3, 5));
+            enMin1 = h1 * 60 + m1;
+            enMin2 = h2 * 60 + m2;
+            accion1 = listaRegistros.get(i - 1).getAccion();
+            accion2 = listaRegistros.get(i).getAccion();
+
+            if (h2 >= 00 && h2 <= 12 && accion1.equals("Conexion") && accion2.equals("Desconexion")) {
+                if (h1 >= 21 && h1 <= 23) {
+                    suenioEnMin = 24 * 60 - enMin1 + enMin2;
+                    hSuenio = suenioEnMin / 60;
+                    mSuenio = suenioEnMin % 60;
+                    sumHras += hSuenio;
+                    sumMns += mSuenio;
+                }else if (h1 >= 00 && h1 <= 12) {
+                    suenioEnMin = enMin2 - enMin1;
+                    hSuenio = suenioEnMin / 60;
+                    mSuenio = suenioEnMin % 60;
+                    sumHras += hSuenio;
+                    sumMns += mSuenio;
+                }
+            }
+        }
+
+        //Poner este if dentro de if de arriba
+        if (sumMns>=60){
+            int divisionHras = sumMns/60;
+            sumHras += divisionHras;
+            int resto = sumMns%60;
+            sumMns = resto;
+        }
+
+        tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
+        double totalHorasGraphView = sumHras + sumMns/60;
+        // Poner valor de tDefinitivo en un Toast o en los TextView del principio
+        cursorRegistros.close();
+
+        return totalHorasGraphView;
+        //return listaRegistros;
+    }
+
 }
 
