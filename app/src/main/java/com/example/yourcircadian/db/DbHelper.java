@@ -19,11 +19,12 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_REGISTROS + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "fecha TEXT NOT NULL," +
-                "hora TEXT NOT NULL," +
-                "accion TEXT NOT NULL)"
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_REGISTROS+ "("+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                "fecha TEXT NOT NULL,"+
+                "hora TEXT NOT NULL,"+
+                "accion TEXT NOT NULL,"+
+                "diaSemana TEXT)"
         );
         sqLiteDatabase.execSQL(
                 "INSERT INTO " + TABLE_REGISTROS + " (fecha, hora, accion) " +

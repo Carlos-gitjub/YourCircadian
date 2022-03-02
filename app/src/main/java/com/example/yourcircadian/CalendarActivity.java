@@ -104,7 +104,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                 date = YYYY + "-" + MM + "-" + DD;
                 String timeSleep = dbRegistros.horas_totales_de_suenio(date);
-                Toast.makeText(CalendarActivity.this,timeSleep,Toast.LENGTH_LONG).show();
+                Toast.makeText(CalendarActivity.this,timeSleep,Toast.LENGTH_SHORT).show();
 /*
                 Intent intent = new Intent(CalendarActivity.this, ShowDateActivity.class);
                 intent.putExtra("date", date);
