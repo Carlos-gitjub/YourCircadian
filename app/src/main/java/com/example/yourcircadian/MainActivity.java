@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,6 +17,11 @@ import android.widget.TextView;
 import com.example.yourcircadian.db.DbHelper;
 import com.example.yourcircadian.db.DbRegistros;
 import com.example.yourcircadian.entidades.Registros;
+import com.jjoe64.graphview.DefaultLabelFormatter;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,8 +39,72 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();  //para escribir en nuestra DB
         DbRegistros dbRegistros = new DbRegistros(this);
 
+        //GRÁFICO
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
+        graph.addSeries(series);
+        //El StaticLabelFormatter no pone los valores, pero es necesario dejarlo para que aparezcan
+        //todos los dias de la semana en el eje x y no de dos en dos.
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"", "L", "M", "X", "J", "V", "S", "D", ""});
+        //staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
+        {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX) {
 
+                    if (value == 0) {
+                        return ""; //+ super.formatLabel(value, isValueX);
+                    }
+                    if (value == 1) {
+                        return "L";
+                    }
+                    if (value == 2) {
+                        return "M";
+                    }
+                    if (value == 3) {
+                        return "X";
+                    }
+                    if (value == 4) {
+                        return "J";
+                    }
+                    if (value == 5) {
+                        return "V";
+                    }
+                    if (value == 6) {
+                        return "S";
+                    }
+                    if (value == 7) {
+                        return "D";
+                    }
+                    if (value == 8) {
+                        return "";
+                    }
 
+                } else {
+                    if (value==0){
+                        return "";
+                    }
+                }
+
+                return super.formatLabel(value, isValueX);
+            }
+        });
+        graph.setTitle("horas sueño:");
+        //rango que cubre eje X
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMaxX(8);
+        //rango que cubre eje Y
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(12);
+        series.setSpacing(50);
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(Color.RED);
+
+        //TEXTVIEWS
         TextView textView1;
         TextView textView2;
         textView1 = (TextView) findViewById(R.id.textView1);
@@ -45,13 +115,12 @@ public class MainActivity extends AppCompatActivity {
         textView2.setText("Te acostastes a las " +  dbRegistros.hora_a_la_que_se_acuesta());
     }
 
-    //Menú superior
+    //MENU SUPERIOR
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_principal, menu);
         return true;
     }
-
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.vistaCalendario:
@@ -78,6 +147,23 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    //DATAPOINTS
+    private DataPoint[] getDataPoint() {
+        DataPoint[] dp = new DataPoint[]
+                {
+                        new DataPoint(0,0),
+                        new DataPoint(1,8.5),
+                        new DataPoint(2,9),
+                        new DataPoint(3,7),
+                        new DataPoint(4,8),
+                        new DataPoint(5,7),
+                        new DataPoint(6,4),
+                        new DataPoint(7,6),
+                        //new DataPoint(8,-1)
+                };
+        return dp;
     }
 
     //Acciones cuando la app está en segundo plano
