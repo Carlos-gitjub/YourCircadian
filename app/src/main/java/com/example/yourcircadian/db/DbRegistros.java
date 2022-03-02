@@ -309,7 +309,10 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         }
 
         tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
-        double totalHorasGraphView = sumHras + sumMns/60;
+
+        Double sumHrasDouble = new Double(sumHras);
+        Double sumMnsDouble = new Double(sumMns);
+        double totalHorasGraphView = sumHrasDouble + sumMnsDouble/60.0;
         // Poner valor de tDefinitivo en un Toast o en los TextView del principio
         cursorRegistros.close();
 

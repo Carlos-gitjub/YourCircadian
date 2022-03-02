@@ -4,6 +4,7 @@ public class Registros {
     private String fecha;
     private String hora;
     private String accion;
+    private String diaSemana;
 
     public String getFecha() {
         return fecha;
@@ -28,4 +29,8 @@ public class Registros {
     public void setAccion(String accion) {
         this.accion = accion;
     }
+
+    public String getDiaSemana() { return diaSemana; }
+
+    public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
 }

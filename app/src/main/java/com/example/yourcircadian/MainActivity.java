@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         DataPoint[] dp = new DataPoint[]
                 {
                         new DataPoint(0,0),
-                        new DataPoint(1,8.5),
+                        new DataPoint(1,8.6),
                         new DataPoint(2,9),
                         new DataPoint(3,7),
                         new DataPoint(4,8),
