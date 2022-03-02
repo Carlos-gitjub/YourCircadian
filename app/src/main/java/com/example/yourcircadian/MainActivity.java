@@ -71,9 +71,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    if (value == 0) {
+                    if (value==0){
                         return "";
+                    }else{
+                        return super.formatLabel(value, isValueX)+ "º";
                     }
+
                 }
 
                 return super.formatLabel(value, isValueX);
