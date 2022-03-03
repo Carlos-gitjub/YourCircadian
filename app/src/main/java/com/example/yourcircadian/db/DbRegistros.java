@@ -320,5 +320,36 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         //return listaRegistros;
     }
 
+    public String[] diasSEMANA(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorRegistros = null;
+        String diaLunes="";
+        String diaAhora="";
+
+        String query1= "SELECT DATE('now','weekday 1','-7 days')";
+        cursorRegistros=db.rawQuery(query1, null);
+        if(cursorRegistros.moveToFirst()){
+            do{
+                diaLunes = cursorRegistros.getString(0);
+            }while (cursorRegistros.moveToNext());
+        }
+
+        String query2= "SELECT DATE('now')";
+        cursorRegistros=db.rawQuery(query2, null);
+        if(cursorRegistros.moveToFirst()){
+            do{
+                diaAhora = cursorRegistros.getString(0);
+            }while (cursorRegistros.moveToNext());
+        }
+
+        String query3= "SELECT * FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
+        cursorRegistros=db.rawQuery(query3, null);
+        if(cursorRegistros.moveToFirst()){
+            do{
+                
+            }while (cursorRegistros.moveToNext());
+        }
+        return null;
+    }
 }
 

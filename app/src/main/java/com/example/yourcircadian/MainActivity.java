@@ -149,8 +149,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //DATAPOINTS
+    //DATAPOINTS de esta semana
+    private String diasSemana(){
+        Date currentTime = Calendar.getInstance().getTime();
+        String registro = String.valueOf(currentTime);       //"Mon Dec 27 16:09:45 GMT+00:00 2021"
+        String diaSem = registro.substring(0,3);
+        if(diaSem != "Mon"){
+
+        }
+
+        return null;
+    }
     private DataPoint[] getDataPoint() {
+
         DataPoint[] dp = new DataPoint[]
                 {
                         new DataPoint(0,0),
