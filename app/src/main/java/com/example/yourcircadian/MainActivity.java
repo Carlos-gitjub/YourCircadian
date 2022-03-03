@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         DbRegistros dbRegistros = new DbRegistros(this);
         ArrayList<Weekday> listaDiasSemana = dbRegistros.diasSEMANA();
         double lunes=0,martes=0,miercoles=0,jueves=0,viernes=0,sabado=0,domingo=0;
+        //Obtención de valores segun weekday(SQLite)
         for(int i=0; i<listaDiasSemana.size(); i++){
             switch (listaDiasSemana.get(i).getWeekday()) {
                 case "1":
