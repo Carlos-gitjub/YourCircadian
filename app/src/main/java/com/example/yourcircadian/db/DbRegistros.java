@@ -311,8 +311,8 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
         tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
-        Double sumHrasDouble = new Double(sumHras);
-        Double sumMnsDouble = new Double(sumMns);
+        Double sumHrasDouble = Double.valueOf(sumHras);
+        Double sumMnsDouble = Double.valueOf(sumMns);
         double totalHorasGraphView = sumHrasDouble + sumMnsDouble/60.0;
         // Poner valor de tDefinitivo en un Toast o en los TextView del principio
         cursorRegistros.close();
@@ -324,10 +324,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
     public ArrayList<Weekday> diasSEMANA(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursorRegistros = null;
+        Cursor cursorRegistros2 = null;
         String diaLunes="";
         String diaAhora="";
         ArrayList<Weekday> listaWeekdays = new ArrayList<>();
-        Weekday weekDay = null;
+        Weekday weekDay ;
 
         String query1= "SELECT DATE('now','weekday 1','-7 days')";
         cursorRegistros=db.rawQuery(query1, null);
@@ -344,19 +345,20 @@ public class DbRegistros extends DbHelper implements FunctionsData{
                 diaAhora = cursorRegistros.getString(0);
             }while (cursorRegistros.moveToNext());
         }
+        cursorRegistros.close();
 
         String query3= "SELECT fecha, strftime('%w',fecha) AS weekday FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
-        cursorRegistros=db.rawQuery(query3, null);
-        if(cursorRegistros.moveToFirst()){
+        cursorRegistros2=db.rawQuery(query3, null);
+        if(cursorRegistros2.moveToFirst()){
             do{
                 weekDay = new Weekday();
-                weekDay.setFecha(cursorRegistros.getString(0));
-                weekDay.setWeekday(cursorRegistros.getString(1));
+                weekDay.setFecha(cursorRegistros2.getString(0));
+                weekDay.setWeekday(cursorRegistros2.getString(1));
 
                 listaWeekdays.add(weekDay);
-            }while (cursorRegistros.moveToNext());
+            }while (cursorRegistros2.moveToNext());
         }
-        cursorRegistros.close();
+        cursorRegistros2.close();
 
         return listaWeekdays;
     }
