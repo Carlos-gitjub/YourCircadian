@@ -4,7 +4,7 @@ public class Registros {
     private String fecha;
     private String hora;
     private String accion;
-    private String diaSemana;
+    //private String diaSemana;
 
     public String getFecha() {
         return fecha;
@@ -30,7 +30,7 @@ public class Registros {
         this.accion = accion;
     }
 
-    public String getDiaSemana() { return diaSemana; }
+    //public String getDiaSemana() { return diaSemana; }
 
-    public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
+    //public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
 }

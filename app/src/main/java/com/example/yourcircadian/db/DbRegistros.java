@@ -325,6 +325,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         Cursor cursorRegistros = null;
         String diaLunes="";
         String diaAhora="";
+        ArrayList<String> listaRegistros = new ArrayList<>();
 
         String query1= "SELECT DATE('now','weekday 1','-7 days')";
         cursorRegistros=db.rawQuery(query1, null);
@@ -346,9 +347,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         cursorRegistros=db.rawQuery(query3, null);
         if(cursorRegistros.moveToFirst()){
             do{
-                
+               listaRegistros.add(cursorRegistros.getString(0));
             }while (cursorRegistros.moveToNext());
         }
+
+
         return null;
     }
 }
