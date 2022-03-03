@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.example.yourcircadian.R;
 import com.example.yourcircadian.entidades.Registros;
+import com.example.yourcircadian.entidades.Weekday;
 
 import java.util.ArrayList;
 
@@ -320,12 +321,13 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         //return listaRegistros;
     }
 
-    public String[] diasSEMANA(){
+    public ArrayList<Weekday> diasSEMANA(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursorRegistros = null;
         String diaLunes="";
         String diaAhora="";
-        ArrayList<String> listaRegistros = new ArrayList<>();
+        ArrayList<Weekday> listaWeekdays = new ArrayList<>();
+        Weekday weekDay = null;
 
         String query1= "SELECT DATE('now','weekday 1','-7 days')";
         cursorRegistros=db.rawQuery(query1, null);
@@ -343,16 +345,20 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }while (cursorRegistros.moveToNext());
         }
 
-        String query3= "SELECT * FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
+        String query3= "SELECT fecha, strftime('%w',fecha) AS weekday FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
         cursorRegistros=db.rawQuery(query3, null);
         if(cursorRegistros.moveToFirst()){
             do{
-               listaRegistros.add(cursorRegistros.getString(0));
+                weekDay = new Weekday();
+                weekDay.setFecha(cursorRegistros.getString(0));
+                weekDay.setWeekday(cursorRegistros.getString(1));
+
+                listaWeekdays.add(weekDay);
             }while (cursorRegistros.moveToNext());
         }
+        cursorRegistros.close();
 
-
-        return null;
+        return listaWeekdays;
     }
 }
 

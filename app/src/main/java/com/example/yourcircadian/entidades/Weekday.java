@@ -10,7 +10,7 @@ public class Weekday {
 
     public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public String getDiaSemana() { return weekday; }
+    public String getWeekday() { return weekday; }
 
-    public void setDiaSemana(String weekday) { this.weekday = weekday; }
+    public void setWeekday(String weekday) { this.weekday = weekday; }
 }

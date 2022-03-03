@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.yourcircadian.db.DbHelper;
 import com.example.yourcircadian.db.DbRegistros;
 import com.example.yourcircadian.entidades.Registros;
+import com.example.yourcircadian.entidades.Weekday;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
@@ -161,17 +162,46 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
     private DataPoint[] getDataPoint() {
+        DbRegistros dbRegistros = new DbRegistros(this);
+        ArrayList<Weekday> listaDiasSemana = dbRegistros.diasSEMANA();
+        double lunes=0,martes=0,miercoles=0,jueves=0,viernes=0,sabado=0,domingo=0;
+        for(int i=0; i<listaDiasSemana.size(); i++){
+            switch (listaDiasSemana.get(i).getWeekday()) {
+                case "1":
+                    lunes = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case "2":
+                    martes = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case"3":
+                    miercoles = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case"4":
+                    jueves = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case"5":
+                    viernes = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case"6":
+                    sabado = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+                case"0":
+                    domingo = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
+                    break;
+            }
+        }
+
 
         DataPoint[] dp = new DataPoint[]
                 {
                         new DataPoint(0,0),
-                        new DataPoint(1,8.6),
-                        new DataPoint(2,9),
-                        new DataPoint(3,7),
-                        new DataPoint(4,8),
-                        new DataPoint(5,7),
-                        new DataPoint(6,4),
-                        new DataPoint(7,6),
+                        new DataPoint(1,lunes),
+                        new DataPoint(2,martes),
+                        new DataPoint(3,miercoles),
+                        new DataPoint(4,jueves),
+                        new DataPoint(5,viernes),
+                        new DataPoint(6,sabado),
+                        new DataPoint(7,domingo),
                         //new DataPoint(8,-1)
                 };
         return dp;
