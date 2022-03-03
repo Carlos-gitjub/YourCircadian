@@ -327,6 +327,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         Cursor cursorRegistros2 = null;
         String diaLunes="";
         String diaAhora="";
+        String dia_prueba="";
         ArrayList<Weekday> listaWeekdays = new ArrayList<>();
         Weekday weekDay ;
 
@@ -345,22 +346,22 @@ public class DbRegistros extends DbHelper implements FunctionsData{
                 diaAhora = cursorRegistros.getString(0);
             }while (cursorRegistros.moveToNext());
         }
-        cursorRegistros.close();
 
         String query3= "SELECT fecha, strftime('%w',fecha) AS weekday FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
-        cursorRegistros2=db.rawQuery(query3, null);
-        if(cursorRegistros2.moveToFirst()){
+        cursorRegistros=db.rawQuery(query3, null);
+        if(cursorRegistros.moveToFirst()){
             do{
                 weekDay = new Weekday();
-                weekDay.setFecha(cursorRegistros2.getString(0));
-                weekDay.setWeekday(cursorRegistros2.getString(1));
+                weekDay.setFecha(cursorRegistros.getString(0));
+                weekDay.setWeekday(cursorRegistros.getString(1));
 
                 listaWeekdays.add(weekDay);
-            }while (cursorRegistros2.moveToNext());
+            }while (cursorRegistros.moveToNext());
         }
-        cursorRegistros2.close();
+        cursorRegistros.close();
 
         return listaWeekdays;
     }
+
 }
 
