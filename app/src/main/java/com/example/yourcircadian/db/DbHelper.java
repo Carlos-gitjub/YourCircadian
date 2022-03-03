@@ -23,8 +23,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "fecha TEXT NOT NULL,"+
                 "hora TEXT NOT NULL,"+
-                "accion TEXT NOT NULL,"+
-                "diaSemana TEXT)"
+                "accion TEXT NOT NULL)"
         );
         sqLiteDatabase.execSQL(
                 "INSERT INTO " + TABLE_REGISTROS + " (fecha, hora, accion) " +
