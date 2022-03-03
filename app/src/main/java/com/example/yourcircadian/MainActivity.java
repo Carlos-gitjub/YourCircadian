@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.formatLabel(value, isValueX);
             }
         });
-        graph.setTitle("horas sueño:");
+        graph.setTitle("horas de sueño esta semana:");
         //rango que cubre eje X
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMaxX(8);
