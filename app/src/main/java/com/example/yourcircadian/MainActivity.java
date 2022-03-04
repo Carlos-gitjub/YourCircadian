@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         graph.setTitle("horas de sueño esta semana:");
+        graph.setTitleTextSize(40);
         //rango que cubre eje X
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMaxX(8);
@@ -112,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView2);
         //Date currentTime = Calendar.getInstance().getTime();
         //textView1.setText(String.valueOf(currentTime));
-        textView1.setText("Te levantastes a las " + dbRegistros.hora_a_la_que_se_levanta());
-        textView2.setText("Te acostastes a las " +  dbRegistros.hora_a_la_que_se_acuesta());
+        textView1.setText(dbRegistros.hora_a_la_que_se_levanta());
+        textView2.setText(dbRegistros.hora_a_la_que_se_acuesta());
     }
 
     //MENU SUPERIOR
@@ -174,19 +175,19 @@ public class MainActivity extends AppCompatActivity {
                 case "2":
                     martes = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
-                case"3":
+                case "3":
                     miercoles = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
-                case"4":
+                case "4":
                     jueves = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
-                case"5":
+                case "5":
                     viernes = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
-                case"6":
+                case "6":
                     sabado = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
-                case"0":
+                case "0":
                     domingo = dbRegistros.horas_totales_de_suenio_GraphView(listaDiasSemana.get(i).getFecha());
                     break;
             }
