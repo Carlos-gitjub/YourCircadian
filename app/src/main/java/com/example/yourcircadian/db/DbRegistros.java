@@ -117,7 +117,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
     public String hora_a_la_que_se_levanta() {
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
-        String hora;
+        String hora="";
 
         Cursor cursorRegistros = null;
         String query = "SELECT hora FROM t_registros WHERE id = (SELECT MAX(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Desconexion')";
@@ -126,8 +126,10 @@ public class DbRegistros extends DbHelper implements FunctionsData{
            do{
                 hora_con_segundos = cursorRegistros.getString(0);
            }while (cursorRegistros.moveToNext());
+        }else{
+            return hora;
         }
-        hora = hora_con_segundos.substring(0,5);
+        hora = "Hoy te levantastes a las "+ hora_con_segundos.substring(0,5);
 
         cursorRegistros.close();
         return hora;
@@ -135,17 +137,24 @@ public class DbRegistros extends DbHelper implements FunctionsData{
     public String hora_a_la_que_se_acuesta() {
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
-        String hora;
+        String hora="";
 
         Cursor cursorRegistros = null;
-        String query = "SELECT hora FROM t_registros WHERE id = (SELECT max(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Conexion')";
+        String q = "SELECT hora FROM t_registros WHERE id = (SELECT max(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Conexion')";
+        String query = "SELECT hora FROM t_registros " +
+                "WHERE id = (SELECT max(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Conexion') " +
+                "AND (fecha = (SELECT DATE('now')) OR fecha = (SELECT DATE('now','-1 days')))";
         cursorRegistros = db.rawQuery(query, null);
         if(cursorRegistros.moveToFirst()){
             do{
                 hora_con_segundos = cursorRegistros.getString(0);
             }while (cursorRegistros.moveToNext());
+        }else{
+            cursorRegistros.close();
+            return hora;
         }
-        hora = hora_con_segundos.substring(0,5);
+
+        hora = "Anoche te acostastes a las "+ hora_con_segundos.substring(0,5);
 
         cursorRegistros.close();
         return hora;
