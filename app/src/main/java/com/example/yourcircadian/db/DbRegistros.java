@@ -374,6 +374,6 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return listaWeekdays;
     }
 
-
+    
 }
 
