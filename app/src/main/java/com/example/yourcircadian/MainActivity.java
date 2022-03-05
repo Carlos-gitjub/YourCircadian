@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
 */
                 return true;
             case R.id.mediaMensual:
-                //Intent intent1 = new Inten...etc
+                Intent intent1 = new Intent(MainActivity.this, GraficoMensualActivity.class);
+                startActivity(intent1);
 
             default:
                 return super.onOptionsItemSelected(item);
