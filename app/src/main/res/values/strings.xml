@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YourCircadian</string>
     <string name="vista_calendario">Vista Calendario</string>
+    <string name="media_suenio_mensual">Media de sueño mensual</string>
 </resources>
