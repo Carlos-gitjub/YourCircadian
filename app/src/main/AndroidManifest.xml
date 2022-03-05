@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YourCircadian">
         <activity
+            android:name=".GraficoMensualActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,17 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarActivity"
+        <activity
+            android:name=".CalendarActivity"
             android:parentActivityName=".MainActivity">
-           <meta-data
-               android:name="android.support.PARENT_ACTIVITY"
-               android:value=".MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
-        <activity android:name=".ShowDateActivity"
+        <activity
+            android:name=".ShowDateActivity"
             android:parentActivityName=".CalendarActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CalendarActivity"/>
+                android:value=".CalendarActivity" />
         </activity>
     </application>
+
 </manifest>
