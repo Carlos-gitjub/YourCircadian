@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1527777777777778" />
+        <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/layout/activity_grafico_mensual.xml" value="0.25" />
         <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/layout/activity_main.xml" value="0.27760416666666665" />
         <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/layout/calendar_layout.xml" value="0.2953703703703704" />
         <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/menu/menu_principal.xml" value="0.1" />
+        <entry key="..\:/Users/canto/YourCircadian/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11666666666666667" />
       </map>
     </option>
   </component>
