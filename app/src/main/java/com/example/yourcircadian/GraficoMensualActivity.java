@@ -8,6 +8,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
+
 public class GraficoMensualActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +26,8 @@ public class GraficoMensualActivity extends AppCompatActivity {
     }
 
     private DataPoint[] getDataPoint() {
+        ArrayList<String> dia = new ArrayList<>();
+        dia
         DataPoint[] dp = new DataPoint[]{
                 new DataPoint(0,1),
                 new DataPoint(1,1),
@@ -56,6 +60,9 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(28,1),
                 new DataPoint(29,7)
         };
+
         return dp;
     }
+
+
 }

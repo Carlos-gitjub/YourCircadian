@@ -374,6 +374,38 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return listaWeekdays;
     }
 
+    public ArrayList<String> dias_DB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorRegistros = null;
+        ArrayList<String> fechas = new ArrayList<>();
+        /*
+        El plan es tomar todas las fechas registradas del mes correspondiente con un GROUP BY y
+        guardarlas en un ArrayList para que después se pasen a la función horas_totales_de_suenio
+        y se guarden las horas en un arraylist de tamaño 31 que contendrá un null en la posición
+        del día que no tenga horas calculadas.
+        */
+
+        String query = "SELECT fecha FROM t_registros WHERE strftime('%m', fecha) = (SELECT strftime('%m','now')) AND strftime('%Y',fecha)=(SELECT strftime('%Y','now'))";
+        cursorRegistros = db.rawQuery(query,null);
+        if(cursorRegistros.moveToFirst()){
+            do{
+                fechas.add(cursorRegistros.getString(0));
+            }while(cursorRegistros.moveToNext());
+        }
+
+        String query2 = "";
+        String[] horas = new String[31];
+        for(int i=0;i<31;i++){
+            if( i++ == Integer.valueOf(fechas.get(i).substring(8,10))){
+
+            }else{
+
+            }
+        }
+
+        cursorRegistros.close();
+        return null;
+    }
 
 }
 
