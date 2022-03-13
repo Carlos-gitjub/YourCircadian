@@ -342,6 +342,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         ArrayList<Weekday> listaWeekdays = new ArrayList<>();
         Weekday weekDay ;
 
+        //Obtiene el último lunes
         String query1= "SELECT DATE('now','weekday 1','-7 days')";
         cursorRegistros=db.rawQuery(query1, null);
         if(cursorRegistros.moveToFirst()){
