@@ -27,7 +27,6 @@ public class GraficoMensualActivity extends AppCompatActivity {
 
     private DataPoint[] getDataPoint() {
         ArrayList<String> dia = new ArrayList<>();
-        dia
         DataPoint[] dp = new DataPoint[]{
                 new DataPoint(0,1),
                 new DataPoint(1,1),
