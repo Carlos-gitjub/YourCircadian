@@ -375,7 +375,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return listaWeekdays;
     }
 
-    public ArrayList<String> dias_DB(){
+    public double[] dias_mes_DB(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursorRegistros = null;
         ArrayList<String> fechas = new ArrayList<>();
@@ -386,7 +386,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         del día que no tenga horas calculadas.
         */
 
-        String query = "SELECT fecha FROM t_registros WHERE strftime('%m', fecha) = (SELECT strftime('%m','now')) AND strftime('%Y',fecha)=(SELECT strftime('%Y','now'))";
+        String query = "SELECT DISTINCT fecha FROM t_registros WHERE strftime('%m', fecha) = (SELECT strftime('%m','now')) AND strftime('%Y',fecha)=(SELECT strftime('%Y','now'))";
         cursorRegistros = db.rawQuery(query,null);
         if(cursorRegistros.moveToFirst()){
             do{
@@ -394,18 +394,25 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }while(cursorRegistros.moveToNext());
         }
 
-        String query2 = "";
-        String[] horas = new String[31];
-        for(int i=0;i<31;i++){
-            if( i++ == Integer.valueOf(fechas.get(i).substring(8,10))){
-
-            }else{
-
+        //CORREGIR linea 400. El indice dado a fechas esta fuera de rango.
+        String[] dias = new String[31];
+        for(int i=1;i<32;i++){
+            for(int j=0;i<31;j++) {
+                if (i == Integer.valueOf(fechas.get(j).substring(8, 10))) {
+                    dias[i--] = fechas.get(i).substring(8, 10);
+                }
             }
         }
 
+        double[] dias_double = new double[31];
+        for(int i=0;i<dias.length;i++){
+            if(dias[i] != null) {
+                dias_double[i] = horas_totales_de_suenio_GraphView(dias[i]);
+           }
+        }
+
         cursorRegistros.close();
-        return null;
+        return dias_double;
     }
 
 }
