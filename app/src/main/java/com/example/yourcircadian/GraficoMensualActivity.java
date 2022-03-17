@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.yourcircadian.db.DbRegistros;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -21,10 +22,12 @@ public class GraficoMensualActivity extends AppCompatActivity {
 
         GraphView graphView = (GraphView) findViewById(R.id.graphMensual);
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
         graphView.addSeries(series);
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMaxX(32);
+        series.setSpacing(15);
+
     }
 
     private DataPoint[] getDataPoint() {
@@ -66,7 +69,7 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(30,1)
 
                  */
-
+                //NOTA: mover en 1 fechas[]
                 new DataPoint(0,fechas[0]),
                 new DataPoint(1,fechas[1]),
                 new DataPoint(2,fechas[2]),
