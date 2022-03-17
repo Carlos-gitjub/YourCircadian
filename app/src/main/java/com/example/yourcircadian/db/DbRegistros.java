@@ -13,6 +13,7 @@ import com.example.yourcircadian.entidades.Registros;
 import com.example.yourcircadian.entidades.Weekday;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DbRegistros extends DbHelper implements FunctionsData{
     Context context;
@@ -397,17 +398,21 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         //CORREGIR linea 400. El indice dado a fechas esta fuera de rango.
         String[] dias = new String[31];
         for(int i=1;i<32;i++){
-            for(int j=0;i<31;j++) {
+            for(int j=0;j<fechas.size();j++) {
                 if (i == Integer.valueOf(fechas.get(j).substring(8, 10))) {
-                    dias[i--] = fechas.get(i).substring(8, 10);
+                    dias[i-1] = fechas.get(j).substring(8, 10);
                 }
             }
         }
-
+        //pasamos a double los valores string
+        Iterator it = fechas.iterator();
         double[] dias_double = new double[31];
         for(int i=0;i<dias.length;i++){
             if(dias[i] != null) {
-                dias_double[i] = horas_totales_de_suenio_GraphView(dias[i]);
+                if (it.hasNext()) {
+                    String f = (String) it.next();
+                    dias_double[i] = horas_totales_de_suenio_GraphView(f);
+                }
            }
         }
 

@@ -29,9 +29,10 @@ public class GraficoMensualActivity extends AppCompatActivity {
 
     private DataPoint[] getDataPoint() {
         ArrayList<String> dia = new ArrayList<>();
-        //double[] fechas = dbRegistros.dias_mes_DB();
+        double[] fechas = dbRegistros.dias_mes_DB();
 
         DataPoint[] dp = new DataPoint[]{
+                /*
                 new DataPoint(0,1),
                 new DataPoint(1,1),
                 new DataPoint(2,7),
@@ -64,7 +65,8 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(29,7),
                 new DataPoint(30,1)
 
-                 /*
+                 */
+
                 new DataPoint(0,fechas[0]),
                 new DataPoint(1,fechas[1]),
                 new DataPoint(2,fechas[2]),
@@ -97,7 +99,7 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(29,fechas[29])
                 //new DataPoint(30,fechas[30])
 
-                 */
+
 
         };
 
