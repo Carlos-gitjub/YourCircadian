@@ -21,12 +21,18 @@ public class GraficoMensualActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grafico_mensual);
 
         GraphView graphView = (GraphView) findViewById(R.id.graphMensual);
-
+        //Añadir valores al objeto del gráfico
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
         graphView.addSeries(series);
+        //Rango de valores eje x
         graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getViewport().setMinX(0);
         graphView.getViewport().setMaxX(32);
         series.setSpacing(15);
+        //Rango de valores eje y
+        graphView.getViewport().setYAxisBoundsManual(true);
+        graphView.getViewport().setMinY(0);
+        graphView.getViewport().setMaxY(12);
 
     }
 
@@ -69,40 +75,39 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(30,1)
 
                  */
-                //NOTA: mover en 1 fechas[]
-                new DataPoint(0,fechas[0]),
-                new DataPoint(1,fechas[1]),
-                new DataPoint(2,fechas[2]),
-                new DataPoint(3,fechas[3]),
-                new DataPoint(4,fechas[4]),
-                new DataPoint(5,fechas[5]),
-                new DataPoint(6,fechas[6]),
-                new DataPoint(7,fechas[7]),
-                new DataPoint(8,fechas[8]),
-                new DataPoint(9,fechas[9]),
-                new DataPoint(10,fechas[10]),
-                new DataPoint(11,fechas[11]),
-                new DataPoint(12,fechas[12]),
-                new DataPoint(13,fechas[13]),
-                new DataPoint(14,fechas[14]),
-                new DataPoint(15,fechas[15]),
-                new DataPoint(16,fechas[16]),
-                new DataPoint(17,fechas[17]),
-                new DataPoint(18,fechas[18]),
-                new DataPoint(19,fechas[19]),
-                new DataPoint(20,fechas[20]),
-                new DataPoint(21,fechas[21]),
-                new DataPoint(22,fechas[22]),
-                new DataPoint(23,fechas[23]),
-                new DataPoint(24,fechas[24]),
-                new DataPoint(25,fechas[25]),
-                new DataPoint(26,fechas[26]),
-                new DataPoint(27,fechas[27]),
-                new DataPoint(28,fechas[28]),
-                new DataPoint(29,fechas[29])
-                //new DataPoint(30,fechas[30])
 
-
+                new DataPoint(0,0),
+                new DataPoint(1,fechas[0]),
+                new DataPoint(2,fechas[1]),
+                new DataPoint(3,fechas[2]),
+                new DataPoint(4,fechas[3]),
+                new DataPoint(5,fechas[4]),
+                new DataPoint(6,fechas[5]),
+                new DataPoint(7,fechas[6]),
+                new DataPoint(8,fechas[7]),
+                new DataPoint(9,fechas[8]),
+                new DataPoint(10,fechas[9]),
+                new DataPoint(11,fechas[10]),
+                new DataPoint(12,fechas[11]),
+                new DataPoint(13,fechas[12]),
+                new DataPoint(14,fechas[13]),
+                new DataPoint(15,fechas[14]),
+                new DataPoint(16,fechas[15]),
+                new DataPoint(17,fechas[16]),
+                new DataPoint(18,fechas[17]),
+                new DataPoint(19,fechas[18]),
+                new DataPoint(20,fechas[19]),
+                new DataPoint(21,fechas[20]),
+                new DataPoint(22,fechas[21]),
+                new DataPoint(23,fechas[22]),
+                new DataPoint(24,fechas[23]),
+                new DataPoint(25,fechas[24]),
+                new DataPoint(26,fechas[25]),
+                new DataPoint(27,fechas[26]),
+                new DataPoint(28,fechas[27]),
+                new DataPoint(29,fechas[28]),
+                new DataPoint(30,fechas[29]),
+                new DataPoint(31,fechas[30])
 
         };
 
