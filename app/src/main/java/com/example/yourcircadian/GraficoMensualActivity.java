@@ -33,7 +33,9 @@ public class GraficoMensualActivity extends AppCompatActivity {
         graphView.getViewport().setYAxisBoundsManual(true);
         graphView.getViewport().setMinY(0);
         graphView.getViewport().setMaxY(12);
-
+        //Titulo del grafico
+        graphView.setTitle("horas de sueño este mes:");
+        graphView.setTitleTextSize(40);
     }
 
     private DataPoint[] getDataPoint() {
