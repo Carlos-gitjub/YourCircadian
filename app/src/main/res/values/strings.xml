@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">YourCircadian</string>
-    <string name="vista_calendario">Vista Calendario</string>
-    <string name="media_suenio_mensual">Vista Mensual</string>
+    <string name="opcion_vista_calendario">Vista Calendario</string>
+    <string name="opcion_vista_mensual">Vista Mensual</string>
+    <string name="opcion_contacto">Contacto</string>
     <string name="textview_seleccione_fecha_calendar">Seleccione fecha para ver cuanto durmió esa noche:</string>
 </resources>

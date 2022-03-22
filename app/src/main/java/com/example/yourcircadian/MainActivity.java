@@ -132,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
                 //dbRegistros.paresIncompletos();
                 //dbRegistros.masDe14HorasDurmiendo();
 
-                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent1);
 /*
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -146,8 +146,13 @@ public class MainActivity extends AppCompatActivity {
 */
                 return true;
             case R.id.mediaMensual:
-                Intent intent1 = new Intent(MainActivity.this, GraficoMensualActivity.class);
-                startActivity(intent1);
+                Intent intent2 = new Intent(MainActivity.this, GraficoMensualActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.contacto:
+                Intent intent3 = new Intent(MainActivity.this, Contacto.class);
+                startActivity(intent3);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

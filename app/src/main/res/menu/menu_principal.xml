@@ -3,8 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/vistaCalendario"
-        android:title="@string/vista_calendario" />
+        android:title="@string/opcion_vista_calendario" />
     <item
         android:id="@+id/mediaMensual"
-        android:title="@string/media_suenio_mensual" />
+        android:title="@string/opcion_vista_mensual" />
+    <item
+        android:id="@+id/contacto"
+        android:title="@string/opcion_contacto" />
 </menu>
