@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView2);
         //Date currentTime = Calendar.getInstance().getTime();
         //textView1.setText(String.valueOf(currentTime));
-        textView1.setText(dbRegistros.hora_a_la_que_se_levanta());
         textView2.setText(dbRegistros.hora_a_la_que_se_acuesta());
+        textView1.setText(dbRegistros.hora_a_la_que_se_levanta());
     }
 
     //MENU SUPERIOR
@@ -211,9 +211,10 @@ public class MainActivity extends AppCompatActivity {
                         new DataPoint(4,jueves),
                         new DataPoint(5,viernes),
                         new DataPoint(6,sabado),
-                        new DataPoint(7,domingo),
+                        new DataPoint(7,domingo)
                         //new DataPoint(8,-1)
                 };
+
         return dp;
     }
 
