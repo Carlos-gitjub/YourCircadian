@@ -19,4 +19,5 @@ public interface FunctionsData {
     String horas_totales_de_suenio(String date);     //Usado en CalendarActivity
     double horas_totales_de_suenio_GraphView(String date); //Usado en MainActivity en el grafico
     ArrayList<Weekday> diasSEMANA();
+    double[] dias_mes_DB();
 }
