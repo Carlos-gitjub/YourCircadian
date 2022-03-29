@@ -41,43 +41,42 @@ public class GraficoMensualActivity extends AppCompatActivity {
     private DataPoint[] getDataPoint() {
         ArrayList<String> dia = new ArrayList<>();
         double[] fechas = dbRegistros.dias_mes_DB();
+        /*
+        DataPoint[] dp = new DataPoint[]{
+                new DataPoint(0,7),
+                new DataPoint(1,7.8),
+                new DataPoint(2,7.5),
+                new DataPoint(3,6),
+                new DataPoint(4,8),
+                new DataPoint(5,6.9),
+                new DataPoint(6,7.9),
+                new DataPoint(7,9),
+                new DataPoint(8,6.4),
+                new DataPoint(9,7.4),
+                new DataPoint(10,4),
+                new DataPoint(11,5.9),
+                new DataPoint(12,9.7),
+                new DataPoint(13,8),
+                new DataPoint(14,7),
+                new DataPoint(15,9),
+                new DataPoint(16,4),
+                new DataPoint(17,7),
+                new DataPoint(18,6.3),
+                new DataPoint(19,7.5),
+                new DataPoint(20,8.5),
+                new DataPoint(21,5.8),
+                new DataPoint(22,5.3),
+                new DataPoint(23,9),
+                new DataPoint(24,7.3),
+                new DataPoint(25,7.5),
+                new DataPoint(26,8.9),
+                new DataPoint(27,6),
+                new DataPoint(28,7),
+                new DataPoint(29,7.6),
+                new DataPoint(30,8)
+        */
 
         DataPoint[] dp = new DataPoint[]{
-                /*
-                new DataPoint(0,1),
-                new DataPoint(1,1),
-                new DataPoint(2,7),
-                new DataPoint(3,1),
-                new DataPoint(4,1),
-                new DataPoint(5,5),
-                new DataPoint(6,1),
-                new DataPoint(7,1),
-                new DataPoint(8,1),
-                new DataPoint(9,1),
-                new DataPoint(10,2),
-                new DataPoint(11,1),
-                new DataPoint(12,4),
-                new DataPoint(13,1),
-                new DataPoint(14,1),
-                new DataPoint(15,3),
-                new DataPoint(16,1),
-                new DataPoint(17,7),
-                new DataPoint(18,1),
-                new DataPoint(19,1),
-                new DataPoint(20,1),
-                new DataPoint(21,1),
-                new DataPoint(22,1),
-                new DataPoint(23,1),
-                new DataPoint(24,5),
-                new DataPoint(25,1),
-                new DataPoint(26,1),
-                new DataPoint(27,1),
-                new DataPoint(28,1),
-                new DataPoint(29,7),
-                new DataPoint(30,1)
-
-                 */
-
                 new DataPoint(0,0),
                 new DataPoint(1,fechas[0]),
                 new DataPoint(2,fechas[1]),
