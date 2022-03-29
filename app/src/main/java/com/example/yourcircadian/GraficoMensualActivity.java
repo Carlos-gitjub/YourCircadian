@@ -40,6 +40,10 @@ public class GraficoMensualActivity extends AppCompatActivity {
 
     private DataPoint[] getDataPoint() {
         ArrayList<String> dia = new ArrayList<>();
+        // vector de tamaño 31 que contiene las horas de sueño calculadas para cada dia del mes
+        // el vector sigue el orden de el mes(primer indice se refiere a primer dia y asi
+        // sucesivamente. ACLARACION: aunque no haya 31 días sigue siendo valido porque el valor
+        // que tendría para el dia que no exista seria 0
         double[] fechas = dbRegistros.dias_mes_DB();
         /*
         DataPoint[] dp = new DataPoint[]{
