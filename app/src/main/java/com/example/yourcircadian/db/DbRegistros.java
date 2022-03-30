@@ -391,7 +391,8 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         del día que no tenga horas calculadas.
         */
 
-        String query = "SELECT DISTINCT fecha FROM t_registros WHERE strftime('%m', fecha) = (SELECT strftime('%m','now')) AND strftime('%Y',fecha)=(SELECT strftime('%Y','now'))";
+        String query = "SELECT DISTINCT fecha FROM t_registros WHERE strftime('%m', fecha) = (SELECT strftime('%m','now')) "+
+                "AND strftime('%Y',fecha)=(SELECT strftime('%Y','now'))";
         cursorRegistros = db.rawQuery(query,null);
         if(cursorRegistros.moveToFirst()){
             do{
