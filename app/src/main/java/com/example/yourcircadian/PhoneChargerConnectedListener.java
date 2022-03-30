@@ -25,7 +25,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         TextView textView1;
         textView1 = (TextView) ((AppCompatActivity)context).findViewById(R.id.textView1);
 
-        DbRegistros dbRegistros = new DbRegistros(context); //por si aca: .getApplicationContext()
+        DbRegistros dbRegistros = new DbRegistros(context); //por si acaso: .getApplicationContext()
 
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
