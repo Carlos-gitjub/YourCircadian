@@ -29,9 +29,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        /*ContentValues is a class used to insert new rows into tables. Each Content Values
-        object represents a single table row as a map of column names to values.*/
-
+            //ContentValues es una clase usada para insertar nuevas filas en tablas.
             ContentValues values = new ContentValues();
             values.put("fecha", fecha);
             values.put("hora", hora);
