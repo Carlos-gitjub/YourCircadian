@@ -363,7 +363,8 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }while (cursorRegistros.moveToNext());
         }
 
-        String query3= "SELECT fecha, strftime('%w',fecha) AS weekday FROM t_registros WHERE fecha BETWEEN '"+ diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
+        String query3= "SELECT fecha, strftime('%w',fecha) AS weekday FROM t_registros WHERE fecha BETWEEN '"+
+                diaLunes+ "' AND '"+ diaAhora+ "' GROUP BY fecha";
         cursorRegistros=db.rawQuery(query3, null);
         if(cursorRegistros.moveToFirst()){
             do{

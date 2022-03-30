@@ -45,40 +45,7 @@ public class GraficoMensualActivity extends AppCompatActivity {
         // sucesivamente. ACLARACION: aunque no haya 31 días sigue siendo valido porque el valor
         // que tendría para el dia que no exista seria 0
         double[] fechas = dbRegistros.dias_mes_DB();
-        /*
-        DataPoint[] dp = new DataPoint[]{
-                new DataPoint(0,7),
-                new DataPoint(1,7.8),
-                new DataPoint(2,7.5),
-                new DataPoint(3,6),
-                new DataPoint(4,8),
-                new DataPoint(5,6.9),
-                new DataPoint(6,7.9),
-                new DataPoint(7,9),
-                new DataPoint(8,6.4),
-                new DataPoint(9,7.4),
-                new DataPoint(10,4),
-                new DataPoint(11,5.9),
-                new DataPoint(12,9.7),
-                new DataPoint(13,8),
-                new DataPoint(14,7),
-                new DataPoint(15,9),
-                new DataPoint(16,4),
-                new DataPoint(17,7),
-                new DataPoint(18,6.3),
-                new DataPoint(19,7.5),
-                new DataPoint(20,8.5),
-                new DataPoint(21,5.8),
-                new DataPoint(22,5.3),
-                new DataPoint(23,9),
-                new DataPoint(24,7.3),
-                new DataPoint(25,7.5),
-                new DataPoint(26,8.9),
-                new DataPoint(27,6),
-                new DataPoint(28,7),
-                new DataPoint(29,7.6),
-                new DataPoint(30,8)
-        */
+
 
         DataPoint[] dp = new DataPoint[]{
                 new DataPoint(0,0),
@@ -113,7 +80,40 @@ public class GraficoMensualActivity extends AppCompatActivity {
                 new DataPoint(29,fechas[28]),
                 new DataPoint(30,fechas[29]),
                 new DataPoint(31,fechas[30])
-
+                /*
+                DataPoint[] dp = new DataPoint[]{
+                        new DataPoint(0,7),
+                        new DataPoint(1,7.8),
+                        new DataPoint(2,7.5),
+                        new DataPoint(3,6),
+                        new DataPoint(4,8),
+                        new DataPoint(5,6.9),
+                        new DataPoint(6,7.9),
+                        new DataPoint(7,9),
+                        new DataPoint(8,6.4),
+                        new DataPoint(9,7.4),
+                        new DataPoint(10,4),
+                        new DataPoint(11,5.9),
+                        new DataPoint(12,9.7),
+                        new DataPoint(13,8),
+                        new DataPoint(14,7),
+                        new DataPoint(15,9),
+                        new DataPoint(16,4),
+                        new DataPoint(17,7),
+                        new DataPoint(18,6.3),
+                        new DataPoint(19,7.5),
+                        new DataPoint(20,8.5),
+                        new DataPoint(21,5.8),
+                        new DataPoint(22,5.3),
+                        new DataPoint(23,9),
+                        new DataPoint(24,7.3),
+                        new DataPoint(25,7.5),
+                        new DataPoint(26,8.9),
+                        new DataPoint(27,6),
+                        new DataPoint(28,7),
+                        new DataPoint(29,7.6),
+                        new DataPoint(30,8)
+                */
         };
 
         return dp;
