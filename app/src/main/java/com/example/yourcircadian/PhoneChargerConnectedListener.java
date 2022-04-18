@@ -33,6 +33,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         String fecha = parserFecha(registro);
         String hora = parserHora(registro);
 
+	// Nota: quitar textview1
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             textView1.setText(String.valueOf(currentTime));          //"Mon Dec 27 16:09:45 GMT+00:00 2021"
             dbRegistros.insertarRegistro(fecha, hora, "Conexion");
