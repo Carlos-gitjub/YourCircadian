@@ -36,6 +36,8 @@ public class GraficoMensualActivity extends AppCompatActivity {
         //Titulo del grafico
         graphView.setTitle("horas de sueño este mes:");
         graphView.setTitleTextSize(40);
+        //Color de las barras
+        //series.setColor();
     }
 
     private DataPoint[] getDataPoint() {

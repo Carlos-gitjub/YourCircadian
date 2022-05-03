@@ -22,8 +22,6 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        //TextView textView1;
-        //textView1 = (TextView) ((AppCompatActivity)context).findViewById(R.id.textView1);
 
         DbRegistros dbRegistros = new DbRegistros(context); //por si aca: .getApplicationContext()
 
@@ -33,12 +31,9 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         String fecha = parserFecha(registro);
         String hora = parserHora(registro);
 
-	// Nota: quitar textview1
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
-            //textView1.setText(String.valueOf(currentTime));          //"Mon Dec 27 16:09:45 GMT+00:00 2021"
-            dbRegistros.insertarRegistro(fecha, hora, "Conexion");
+            dbRegistros.insertarRegistro(fecha, hora, "Conexion");   //"Mon Dec 27 16:09:45 GMT+00:00 2021"
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
-            //textView1.setText(String.valueOf(currentTime));
             dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
         }
     }
