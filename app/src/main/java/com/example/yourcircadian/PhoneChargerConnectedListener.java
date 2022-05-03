@@ -23,7 +23,7 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
 
-        DbRegistros dbRegistros = new DbRegistros(context); //por si aca: .getApplicationContext()
+        DbRegistros dbRegistros = new DbRegistros(context);                         //por si aca: .getApplicationContext()
 
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
