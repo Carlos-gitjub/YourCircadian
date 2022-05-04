@@ -6,4 +6,6 @@
     <string name="textview_seleccione_fecha_calendar">Seleccione fecha para ver cuanto durmió esa noche:</string>
     <string name="contacto">Email de contacto: cantonplk@gmail.com</string>
     <string name="manual">Manual</string>
+    <string name="boton_comienza">Comienza el sueño</string>
+    <string name="boton_finaliza">Finaliza el sueño</string>
 </resources>
