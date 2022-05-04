@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(MainActivity.this, Contacto.class);
                 startActivity(intent3);
                 return true;
+            case R.id.manual:
+                Intent intent4 = new Intent(MainActivity.this,Manual.class);
+                startActivity(intent4);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

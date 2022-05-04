@@ -5,4 +5,5 @@
     <string name="opcion_contacto">Contacto</string>
     <string name="textview_seleccione_fecha_calendar">Seleccione fecha para ver cuanto durmió esa noche:</string>
     <string name="contacto">Email de contacto: cantonplk@gmail.com</string>
+    <string name="manual">Manual</string>
 </resources>
