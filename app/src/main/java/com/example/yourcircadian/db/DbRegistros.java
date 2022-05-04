@@ -1,4 +1,6 @@
 package com.example.yourcircadian.db;
+import static java.lang.Math.round;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +14,7 @@ import com.example.yourcircadian.R;
 import com.example.yourcircadian.entidades.Registros;
 import com.example.yourcircadian.entidades.Weekday;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -326,13 +329,16 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             sumMns = resto;
         }
 
-        tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
+        //tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
 
         Double sumHrasDouble = Double.valueOf(sumHras);
         Double sumMnsDouble = Double.valueOf(sumMns);
         double totalHorasGraphView = sumHrasDouble + sumMnsDouble/60.0;
         // Poner valor de tDefinitivo en un Toast o en los TextView del principio
         cursorRegistros.close();
+        // Redondea el valor del double a un decimal
+        DecimalFormat df = new DecimalFormat("#.#");
+        totalHorasGraphView = Double.valueOf(df.format(totalHorasGraphView));
 
         return totalHorasGraphView;
         //return listaRegistros;
