@@ -3,6 +3,7 @@ package com.example.yourcircadian;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.yourcircadian.db.DbRegistros;
 import com.jjoe64.graphview.GraphView;
@@ -19,6 +20,8 @@ public class GraficoMensualActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico_mensual);
+
+        TextView textView = (TextView) findViewById(R.id.textView_grafico_mensual);
 
         GraphView graphView = (GraphView) findViewById(R.id.graphMensual);
         //Añadir valores al objeto del gráfico
@@ -38,6 +41,7 @@ public class GraficoMensualActivity extends AppCompatActivity {
         graphView.setTitleTextSize(40);
         //Color de las barras
         //series.setColor();
+        textView.setText("Media diaria = "+ dbRegistros.media_numerica_mensual());
     }
 
     private DataPoint[] getDataPoint() {

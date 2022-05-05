@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(MainActivity.this, GraficoMensualActivity.class);
                 startActivity(intent2);
                 return true;
+
             case R.id.contacto:
                 Intent intent3 = new Intent(MainActivity.this, Contacto.class);
                 startActivity(intent3);
@@ -157,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent4 = new Intent(MainActivity.this,ManualActivity.class);
                 startActivity(intent4);
                 return true;
-
+            case R.id.mediaMensualNumerica:
+                Intent intent5 = new Intent(MainActivity.this, MediaActivity.class);
+                startActivity(intent5);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

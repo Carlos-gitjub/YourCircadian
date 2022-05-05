@@ -8,6 +8,9 @@
         android:id="@+id/mediaMensual"
         android:title="@string/opcion_vista_mensual" />
     <item
+        android:id="@+id/mediaMensualNumerica"
+        android:title="@string/opcion_media_numerica" />
+    <item
         android:id="@+id/contacto"
         android:title="@string/opcion_contacto" />
     <item
