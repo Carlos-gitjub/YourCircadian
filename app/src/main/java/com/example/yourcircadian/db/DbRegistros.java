@@ -431,5 +431,23 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return dias_double;
     }
 
+    public String media_numerica_mensual(){
+        double[] horas_31_fechas = dias_mes_DB();
+
+        int contador = 0;
+        double sumatorio = 0;
+        double media = 0;
+        for (int i = 0; i < 31; i++) {
+            double horas = horas_31_fechas[i];
+            if ( horas != 0.0) {
+                contador++;
+                sumatorio += horas_31_fechas[i];
+            }
+        }
+        media = sumatorio / contador;
+        String media_string = String.valueOf(media);
+        return media_string;
+    }
+
 }
 
