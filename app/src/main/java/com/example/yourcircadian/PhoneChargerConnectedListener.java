@@ -32,8 +32,12 @@ public class PhoneChargerConnectedListener extends BroadcastReceiver {
         String hora = parserHora(registro);
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
+            String mensaje_Toast_conexion = "El dispositivo se ha conectado";
+            //Toast.makeText(context,mensaje_Toast_conexion,Toast.LENGTH_SHORT).show();
             dbRegistros.insertarRegistro(fecha, hora, "Conexion");   //"Mon Dec 27 16:09:45 GMT+00:00 2021"
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
+            String mensaje_Toast_desconexion = "El dispositivo se ha desconectado";
+            //Toast.makeText(context,mensaje_Toast_desconexion,Toast.LENGTH_SHORT).show();
             dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
         }
     }
