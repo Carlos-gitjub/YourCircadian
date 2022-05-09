@@ -48,75 +48,6 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         }
     }
 
-// Función a continución, que:
-// le resta un día menos a las fechas cuyas horas se encuentran entre las 00:00:00 y
-// 12:00:00 para que identifique cada noche de sueño como perteneciente
-// a un mismo dia y no a una mezcla de dos.
-
-    public ArrayList<Registros> mostrarRegistroAPartirDeFecha(String date) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ArrayList<Registros> listaRegistros = new ArrayList<>();
-        Registros registro = null;
-        Cursor cursorRegistros = null;
-        String query = "SELECT fecha, hora, accion FROM " + TABLE_REGISTROS + " WHERE fecha = " + "'"+date+"'";
-        cursorRegistros = db.rawQuery(query, null);
-
-        if(cursorRegistros.moveToFirst()){
-            do{
-                registro = new Registros();
-                registro.setFecha(cursorRegistros.getString(0));
-                registro.setHora(cursorRegistros.getString(1));
-                registro.setAccion(cursorRegistros.getString(2));
-                listaRegistros.add(registro);
-            }while (cursorRegistros.moveToNext());
-        }
-
-        cursorRegistros.close();
-        return listaRegistros;
-
-    }
-
-
-    public void rangoNocturno(){
-        //Esta función elimina los valores que no se encuentran dentro del horario normal de sueño,
-        //en este caso se ha establecido desde las 21:00 hasta las 12:00
-
-        String horaMin = "21:00:00";
-        String horaMax = "12:00:00";
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query =
-                "DELETE FROM " + TABLE_REGISTROS +
-                        " WHERE hora < '21:00:00' AND hora > '12:00:00'";
-        db.execSQL(query);
-    }
-    public void duplicadosMismaFechaHora(){
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String query =
-                "DELETE FROM " + TABLE_REGISTROS + " WHERE id NOT IN" +
-                "(" +
-                "SELECT MIN(id) FROM " + TABLE_REGISTROS + " GROUP BY fecha, hora, accion" +
-                ")";
-        db.execSQL(query);
-    }
-
-
-    public void paresIncompletos() {
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String query = "";
-        db.execSQL(query);
-    }
-
-    public void masDe14HorasDurmiendo() {
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String query = "";
-        db.execSQL(query);
-    }
-
     @Override
     public String hora_a_la_que_se_levanta() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -169,19 +100,6 @@ public class DbRegistros extends DbHelper implements FunctionsData{
 
         cursorRegistros.close();
         return hora;
-    }
-
-
-    public void depurarYActualizarTabla(){
-        this.rangoNocturno();
-        this.duplicadosMismaFechaHora();
-    }
-
-    public void parConex_DesconexImcompleto(){
-
-    }
-    public void tiempoEntreConexionDesconexion(){
-
     }
 
     public String horas_totales_de_suenio(String date){
@@ -329,23 +247,14 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             sumMns = resto;
         }
 
-        //tDefinitivo = String.valueOf(sumHras)+ "h "+ String.valueOf(sumMns)+ "min";
-
         Double sumHrasDouble = Double.valueOf(sumHras);
         Double sumMnsDouble = Double.valueOf(sumMns);
         double totalHorasGraphView = sumHrasDouble + sumMnsDouble/60.0;
-        // Poner valor de tDefinitivo en un Toast o en los TextView del principio
         cursorRegistros.close();
         // Redondea el valor del double a un decimal
         totalHorasGraphView = Math.round(totalHorasGraphView * 10.0) / 10.0;
 
-        /*
-        DecimalFormat df = new DecimalFormat("#.#");
-        totalHorasGraphView = Double.valueOf(df.format(totalHorasGraphView));
-         */
-
         return totalHorasGraphView;
-        //return listaRegistros;
     }
 
     public ArrayList<Weekday> diasSEMANA(){
