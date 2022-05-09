@@ -337,7 +337,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         // Poner valor de tDefinitivo en un Toast o en los TextView del principio
         cursorRegistros.close();
         // Redondea el valor del double a un decimal
-        totalHorasGraphView = Math.round(totalHorasGraphView * 100.0) / 100.0;
+        totalHorasGraphView = Math.round(totalHorasGraphView * 10.0) / 10.0;
 
         /*
         DecimalFormat df = new DecimalFormat("#.#");
@@ -449,7 +449,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             }
         }
         media = sumatorio / contador;
-        media = Math.round(media * 100.0) / 100.0;
+        media = Math.round(media * 10.0) / 10.0;
         String media_string = String.valueOf(media);
         return media_string;
     }
