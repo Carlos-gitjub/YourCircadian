@@ -82,10 +82,13 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         String hora="";
 
         Cursor cursorRegistros = null;
-        //String q = "SELECT hora FROM t_registros WHERE id = (SELECT max(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Conexion')";
+
         String query = "SELECT hora FROM t_registros "+
-        "WHERE id = (SELECT MAX(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Conexion') "+
-        "AND fecha = (SELECT DATE('now')) OR ( fecha = (SELECT DATE('now','-1 days')) )";
+        "WHERE id = (SELECT MAX(id) FROM t_registros WHERE ((accion = 'Conexion' AND (hora < '12:00:00') "+
+                "AND (fecha = (SELECT DATE('now')))) "+
+        "OR (accion = 'Conexion' AND (hora > '21:00:00') "+
+                "AND (fecha = (SELECT DATE('now','-1 days'))))))";
+
         cursorRegistros = db.rawQuery(query, null);
         if(cursorRegistros.moveToFirst()){
             do{
