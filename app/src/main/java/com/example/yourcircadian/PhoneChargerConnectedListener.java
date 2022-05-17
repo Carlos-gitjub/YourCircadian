@@ -17,37 +17,38 @@ import java.util.Date;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yourcircadian.db.DbRegistros;
-
+/* Esta clase es la encargada de detectar una carga o una descarga, para después
+* insertar la fecha y hora a la que esta tiene lugar dentro en la base de datos*/
 public class PhoneChargerConnectedListener extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
+        DbRegistros dbRegistros = new DbRegistros(context);
 
-        DbRegistros dbRegistros = new DbRegistros(context);                         //por si aca: .getApplicationContext()
-
-        Date currentTime = Calendar.getInstance().getTime();
+        Date currentTime = Calendar.getInstance().getTime(); //Muestra: "Mon Dec 27 16:09:45 GMT+00:00 2021"
         String registro = String.valueOf(currentTime);
-
-        String fecha = parserFecha(registro);
-        String hora = parserHora(registro);
+        String fecha = formatearFecha(registro);
+        String hora = formatearHora(registro);
 
         if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
             String mensaje_Toast_conexion = "El dispositivo ha sido conectado";
             Toast.makeText(((MainActivity)context),mensaje_Toast_conexion,Toast.LENGTH_SHORT).show();
-            dbRegistros.insertarRegistro(fecha, hora, "Conexion");   //"Mon Dec 27 16:09:45 GMT+00:00 2021"
+            dbRegistros.insertarRegistro(fecha, hora, "Conexion");
+
         } else if (Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
             String mensaje_Toast_desconexion = "El dispositivo ha sido desconectado";
             Toast.makeText(((MainActivity)context),mensaje_Toast_desconexion,Toast.LENGTH_SHORT).show();
             dbRegistros.insertarRegistro(fecha, hora, "Desconexion");
+
         }
     }
 
-    public String parserHora(String registro){
+    public String formatearHora(String registro){
        String hora = registro.substring(11,19);
        return hora;
     }
 
-    public String parserFecha(String registro){
+    public String formatearFecha(String registro){
         String fecha;
         String[] splitted_parts = registro.split(" ");
         String año = splitted_parts[5];

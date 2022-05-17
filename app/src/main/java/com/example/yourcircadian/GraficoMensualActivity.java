@@ -9,7 +9,6 @@ import com.example.yourcircadian.db.DbRegistros;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 
@@ -21,17 +20,17 @@ public class GraficoMensualActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico_mensual);
         TextView textView = (TextView) findViewById(R.id.textView_media_numerica_mensual);
-
         GraphView graphView = (GraphView) findViewById(R.id.graphMensual);
+
         //Añadir valores al objeto del gráfico
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoint());
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(getDataPoints());
         graphView.addSeries(series);
-        //Rango de valores eje x
+        //Eje x
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMinX(0);
         graphView.getViewport().setMaxX(32);
         series.setSpacing(15);
-        //Rango de valores eje y
+        //Eje y
         graphView.getViewport().setYAxisBoundsManual(true);
         graphView.getViewport().setMinY(0);
         graphView.getViewport().setMaxY(12);
@@ -40,50 +39,20 @@ public class GraficoMensualActivity extends AppCompatActivity {
         graphView.setTitleTextSize(40);
         //Color de las barras
         //series.setColor();
-        textView.setText("Media diaria: "+ dbRegistros.media_numerica_mensual());
+
+        textView.setText("Media diaria: "+ dbRegistros.mediaNumericaMensual());
     }
 
-    private DataPoint[] getDataPoint() {
+    private DataPoint[] getDataPoints() {
         ArrayList<String> dia = new ArrayList<>();
-        // vector de tamaño 31 que contiene las horas de sueño calculadas para cada dia del mes
-        // el vector sigue el orden de el mes(primer indice se refiere a primer dia y asi
-        // sucesivamente. ACLARACION: aunque no haya 31 días sigue siendo valido porque el valor
-        // que tendría para el dia que no exista seria 0
-        double[] fechas = dbRegistros.dias_mes_DB();
+
         /*
-        DataPoint[] dp = new DataPoint[]{
-                new DataPoint(0,7),
-                new DataPoint(1,7.8),
-                new DataPoint(2,7.5),
-                new DataPoint(3,6),
-                new DataPoint(4,8),
-                new DataPoint(5,6.9),
-                new DataPoint(6,7.9),
-                new DataPoint(7,9),
-                new DataPoint(8,6.4),
-                new DataPoint(9,7.4),
-                new DataPoint(10,4),
-                new DataPoint(11,5.9),
-                new DataPoint(12,9.7),
-                new DataPoint(13,8),
-                new DataPoint(14,7),
-                new DataPoint(15,9),
-                new DataPoint(16,4),
-                new DataPoint(17,7),
-                new DataPoint(18,6.3),
-                new DataPoint(19,7.5),
-                new DataPoint(20,8.5),
-                new DataPoint(21,5.8),
-                new DataPoint(22,5.3),
-                new DataPoint(23,9),
-                new DataPoint(24,7.3),
-                new DataPoint(25,7.5),
-                new DataPoint(26,8.9),
-                new DataPoint(27,6),
-                new DataPoint(28,7),
-                new DataPoint(29,7.6),
-                new DataPoint(30,8)
+        * El vector que viene a continuación es unvector de tamaño 31 que contiene las horas de
+        * sueño calculadas para cada dia del mes el vector sigue el orden de el mes
+        * (primer indice se refiere a primer dia y asi sucesivamente). ACLARACION: aunque no haya 31
+        * días sigue siendo valido porque el valor que tendría para el dia que no exista seria 0.
         */
+        double[] fechas = dbRegistros.diasMesDB();
 
         DataPoint[] dp = new DataPoint[]{
                 new DataPoint(0,0),
