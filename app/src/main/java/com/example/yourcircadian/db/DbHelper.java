@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+/*
+Clase que lleva a cabo la creación de la base de datos SQLite local, permite introduce valores
+iniciales y lleva a cabo la eliminación o reemplazo de tablas.
+ */
 
 public class DbHelper extends SQLiteOpenHelper {
 

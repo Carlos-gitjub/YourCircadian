@@ -19,28 +19,32 @@ public class ManualActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manual);
 
     }
-    public void comienza(View view) {
+    /*
+    NOTA: La llamada a estas funciones está programada en el layout "activity_manual.xml".
+     */
+    public void comienzaSuenio(View view) {
         DbRegistros dbRegistros = new DbRegistros(this);
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
 
         PhoneChargerConnectedListener phoneChargerConnectedListener = new PhoneChargerConnectedListener();
 
-        String fecha = phoneChargerConnectedListener.parserFecha(registro);
-        String hora = phoneChargerConnectedListener.parserHora(registro);
+        String fecha = phoneChargerConnectedListener.formatearFecha(registro);
+        String hora = phoneChargerConnectedListener.formatearHora(registro);
         dbRegistros.insertarRegistro(fecha,hora,"Conexion");
 
         Toast.makeText(ManualActivity.this,"Buenas noches",Toast.LENGTH_SHORT).show();
     }
-    public void finaliza(View view){
+
+    public void finalizaSuenio(View view){
         DbRegistros dbRegistros = new DbRegistros(this);
         Date currentTime = Calendar.getInstance().getTime();
         String registro = String.valueOf(currentTime);
 
         PhoneChargerConnectedListener phoneChargerConnectedListener = new PhoneChargerConnectedListener();
 
-        String fecha = phoneChargerConnectedListener.parserFecha(registro);
-        String hora = phoneChargerConnectedListener.parserHora(registro);
+        String fecha = phoneChargerConnectedListener.formatearFecha(registro);
+        String hora = phoneChargerConnectedListener.formatearHora(registro);
         dbRegistros.insertarRegistro(fecha,hora,"Desconexion");
 
         Toast.makeText(ManualActivity.this,"Buenos días",Toast.LENGTH_SHORT).show();

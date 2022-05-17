@@ -5,16 +5,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.yourcircadian.R;
 import com.example.yourcircadian.entidades.Registros;
 import com.example.yourcircadian.entidades.Weekday;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -49,7 +45,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
     }
 
     @Override
-    public String hora_a_la_que_se_levanta() {
+    public String horaALaQueSeLevanta() {
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
         String hora="";
@@ -76,7 +72,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return hora;
     }
     @Override
-    public String hora_a_la_que_se_acuesta() {
+    public String horaALaQueSeAcuesta() {
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
         String hora="";
@@ -105,7 +101,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return hora;
     }
 
-    public String horas_totales_de_suenio(String date){
+    public String horasTotalesDeSuenio(String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Registros> listaRegistros = new ArrayList<>();
@@ -182,7 +178,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         //return listaRegistros;
     }
 
-    public double horas_totales_de_suenio_GraphView(String date){
+    public double horasTotalesDeSuenioGraphView(String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Registros> listaRegistros = new ArrayList<>();
@@ -303,7 +299,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return listaWeekdays;
     }
 
-    public double[] dias_mes_DB(){
+    public double[] diasMesDB(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursorRegistros = null;
         ArrayList<String> fechas = new ArrayList<>();
@@ -338,7 +334,7 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             if(dias[i] != null) {
                 if (it.hasNext()) {
                     String f = (String) it.next();
-                    dias_double[i] = horas_totales_de_suenio_GraphView(f);
+                    dias_double[i] = horasTotalesDeSuenioGraphView(f);
                 }
            }
         }
@@ -347,8 +343,8 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         return dias_double;
     }
 
-    public String media_numerica_mensual(){
-        double[] horas_31_fechas = dias_mes_DB();
+    public String mediaNumericaMensual(){
+        double[] horas_31_fechas = diasMesDB();
 
         int contador = 0;
         double sumatorio = 0;
