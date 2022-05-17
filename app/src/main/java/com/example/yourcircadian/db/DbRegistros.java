@@ -49,14 +49,11 @@ public class DbRegistros extends DbHelper implements FunctionsData{
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
         String hora="";
-
         Cursor cursorRegistros = null;
-        String queryfdsaf = "SELECT hora FROM t_registros "+
-                "WHERE id = (SELECT MAX(id) FROM t_registros WHERE (hora > '21:00:00' OR hora < '12:00:00') AND accion = 'Desconexion') "+
-                "AND fecha = (SELECT DATE('now')) OR ( fecha = (SELECT DATE('now','-1 days')) AND (hora >= '00:00:00' AND hora <= '01:30:00') )";
         String query = "SELECT hora FROM t_registros "+
         "WHERE id = (SELECT MAX(id) FROM t_registros WHERE (hora < '12:00:00') AND accion = 'Desconexion' "+
         "AND fecha = (SELECT DATE('now')))";
+
         cursorRegistros = db.rawQuery(query, null);
         if(cursorRegistros.moveToFirst()){
            do{
@@ -66,19 +63,19 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             cursorRegistros.close();
             return hora;
         }
+        cursorRegistros.close();
+
         hora = "Hoy te levantastes a las "+ hora_con_segundos.substring(0,5);
 
-        cursorRegistros.close();
         return hora;
     }
+
     @Override
     public String horaALaQueSeAcuesta() {
         SQLiteDatabase db = this.getWritableDatabase();
         String hora_con_segundos = null;
         String hora="";
-
         Cursor cursorRegistros = null;
-
         String query = "SELECT hora FROM t_registros "+
         "WHERE id = (SELECT MAX(id) FROM t_registros WHERE ((accion = 'Conexion' AND (hora < '12:00:00') "+
                 "AND (fecha = (SELECT DATE('now')))) "+
@@ -94,10 +91,10 @@ public class DbRegistros extends DbHelper implements FunctionsData{
             cursorRegistros.close();
             return hora;
         }
+        cursorRegistros.close();
 
         hora = "Anoche te acostastes a las "+ hora_con_segundos.substring(0,5);
 
-        cursorRegistros.close();
         return hora;
     }
 
