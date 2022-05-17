@@ -20,7 +20,8 @@ public class ManualActivity extends AppCompatActivity {
 
     }
     /*
-    NOTA: La llamada a estas funciones está programada en el layout "activity_manual.xml".
+    * NOTA: La llamada a las siguientes funciones está programada en el layout "activity_manual.xml" no
+    * en esta clase
      */
     public void comienzaSuenio(View view) {
         DbRegistros dbRegistros = new DbRegistros(this);
