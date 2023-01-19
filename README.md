@@ -1,2 +1,7 @@
 # YourCircadian
-App that recollects and displays useful data about user sleep patterns based on the charging and discharging times of the device, without any user intervation or input needed (passive data collection). This app is for the final project of the course.
+## Description
+App that recollects and displays useful data about the user sleep patterns by using the charging and discharging times of the device, without any user intervation or input needed (passive data collection). 
+
+The basic premise of the app is that people charge the mobile phone before they go to bed and discharge it when they wake up. The app's algorithm then listens to when the phone is connected to begin charging and to when it is disconected to stops charging. It takes the times (hour and date) and selects whether or not these times are indeed reliable: for example, a charging of the phone at 15:00 would most likely not represent that the person went to sleep at that time, the same for charging and discharging times that are too close to each other temporally, like 10 minutes apart from each other, this also would not represent that the person slept 10 minutes. In this manner the algorithm keeps taking into account these types of cases and discards them, leaving only the times that are reliable.
+
+**NOTE**: The algorithm works perfect. What is left to do is implement a background service that listens to the charging and discharging times of the device when the app is completely shut down. This was posible to do in old versions with the AndroidManifest.xml but this option seems now to be deprecated. Currently the app does listen to these events but it has to be active (open in the screen or running in the background).
