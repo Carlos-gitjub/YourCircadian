@@ -1,6 +1,6 @@
 # YourCircadian
 ## Description
-Final project. App that recollects and displays useful data about the user sleep patterns by using the charging and discharging times of the device, without any user intervation or input needed (passive data collection). 
+Final project of the app development degree. App that recollects and displays useful data about the user sleep patterns by using the charging and discharging times of the device, without any user intervation or input needed (passive data collection). 
 
 The basic premise of the app is that people charge the mobile phone before they go to bed and discharge it when they wake up. The app's algorithm then listens to when the phone is connected (to begin charging) and disconected (to stop charging). It takes the times (hour and date) of these events and selects whether or not these times are reliable: for example, a charging of the phone at 15:00 would most likely not represent that the person went to sleep at that time, the same for charging and discharging times that are too close to each other temporally, like for example, 10 minutes apart from each other, this also would not represent that the person slept 10 minutes. In this manner the algorithm takes into account these types of cases and discards them, leaving only the times that are reliable.
 
